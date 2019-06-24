@@ -9,11 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class JiraLogin extends BasePage{
 
     By userName = By.id("login-form-username");
-
-    By password = By.id("login-form-username");
-
+    By password = By.id("login-form-password");
     By login = By.id("login");
-
     By header = By.id("header-details-user-fullname");
 
     public JiraLogin(WebDriver driver){
@@ -22,12 +19,11 @@ public class JiraLogin extends BasePage{
 
     public void clickLogin(){
         driver.findElement(login).click();
-
     }
 
     boolean isLoggedIn() {
         try {
-            driver.findElement(By.id("header-details-user-fullname")).isDisplayed();
+            driver.findElement(header).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
