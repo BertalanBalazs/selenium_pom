@@ -1,31 +1,30 @@
 package com.codecool.vargabeles.selenium.pom;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JiraLoginTest {
-    private WebDriver driver;
+class JiraLoginTest extends BaseTest{
     private JiraLogin jiraLogin;
 
-    @BeforeEach
-    void setUp() {
-        System.setProperty("webdriver.chrome.driver", System.getenv("webdriverRoute"));
-        driver = new ChromeDriver();
-        jiraLogin = new JiraLogin(driver);
-    }
 
-    @AfterEach
-    void tearDown() {
-        driver.close();
+    @BeforeAll
+    static void init(){
+
     }
 
     @Test
     void loginToJira() {
-        jiraLogin.loginToJira();
+        jiraLogin = new JiraLogin();
+        Utils.navigate();
+        jiraLogin.loginToJira(System.getenv("username"), System.getenv("password"));
     }
+
 }

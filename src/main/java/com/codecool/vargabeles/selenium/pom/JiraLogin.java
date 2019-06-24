@@ -1,45 +1,47 @@
 package com.codecool.vargabeles.selenium.pom;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-public class JiraLogin {
+public class JiraLogin extends BasePage{
 
-    WebDriver driver;
+    By userName = By.id("login-form-username");
 
-    By userName = By.name(System.getenv("JiraUsername"));
+    By password = By.id("login-form-username");
 
-    By password = By.name(System.getenv("JiraPassword"));
+    By login = By.id("login");
 
-    By titleText =By.className("barone");
-
-    By login = By.name("btnLogin");
+    By header = By.id("header-details-user-fullname");
 
     public JiraLogin(WebDriver driver){
-        this.driver = driver;
+        super(driver);
     }
 
-
-    //Click on login button
-
     public void clickLogin(){
-
         driver.findElement(login).click();
 
     }
 
-    //Get the title of Login Page
-
-    public String getLoginTitle(){
-        return    driver.findElement(titleText).getText();
-
+    boolean isLoggedIn() {
+        try {
+            driver.findElement(By.id("header-details-user-fullname")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+        return true;
     }
 
-
-    public void loginToJira(){
+    public void loginToJira(String username, String password){
+        navigate();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(this.userName));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(this.password));
+        driver.findElement(this.userName).sendKeys(username);
+        driver.findElement(this.password).sendKeys(password);
         this.clickLogin();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(this.header));
     }
 
 }
