@@ -11,20 +11,26 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JiraLoginTest extends BaseTest{
-    private JiraLogin jiraLogin;
+class JiraLoginTest{
+    private JiraLogin login;
+    private WebDriver driver;
 
+    @BeforeEach
+    void setUp() {
+        System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
+        driver = new ChromeDriver();
+        login = new JiraLogin(driver);
+    }
 
-    @BeforeAll
-    static void init(){
-
+    @AfterEach
+    void tearDown() {
+        driver.close();
     }
 
     @Test
     void loginToJira() {
-        jiraLogin = new JiraLogin();
-        Utils.navigate();
-        jiraLogin.loginToJira(System.getenv("username"), System.getenv("password"));
+        login.loginToJira(System.getenv("username"), System.getenv("password"));
+        assertTrue(login.isLoggedIn());
     }
 
 }

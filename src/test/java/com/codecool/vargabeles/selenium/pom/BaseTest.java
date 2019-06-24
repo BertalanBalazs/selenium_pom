@@ -7,13 +7,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
 
-    static WebDriver driver;
+    WebDriver driver;
 
     @BeforeEach
     void setUp() {
+        JiraLogin login = new JiraLogin(driver);
         System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
         driver = new ChromeDriver();
-        Utils.setDriver(driver);
+        login.loginToJira(System.getenv("username"), System.getenv("password"));
     }
 
     @AfterEach
