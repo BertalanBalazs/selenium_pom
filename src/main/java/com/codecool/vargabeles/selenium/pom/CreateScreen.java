@@ -8,9 +8,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CreateScreen extends BasePage {
 
-    By projectDropdownLocator = By.cssSelector("#project-field");
+    By projectDropdownLocator = By.id("project-field");
     By summaryFieldLocator = By.id("summary");
     By submitButtonLocator = By.id("create-issue-submit");
+    By popUpLinkLocator = By.id(".issue-created-key");
 
     public CreateScreen(WebDriver webDriver) {
         super(webDriver);
@@ -43,6 +44,15 @@ public class CreateScreen extends BasePage {
     public void pressSubmitButton() {
         driver.findElement(submitButtonLocator).click();
     }
+
+    public void waitForPopUpLink() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(popUpLinkLocator));
+        driver.findElement(popUpLinkLocator).click();
+    }
+
+
+
+
 
 
 
