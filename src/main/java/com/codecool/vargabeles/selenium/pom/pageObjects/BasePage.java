@@ -12,7 +12,7 @@ public class BasePage {
 
     private final int TimeoutValue = 7;
 
-    protected BasePage(WebDriver webDriver) {
+    public BasePage(WebDriver webDriver) {
         this.driver = webDriver;
         wait = new WebDriverWait(driver, 10);
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, TimeoutValue), this);
@@ -26,4 +26,5 @@ public class BasePage {
     protected void navigate(){
         driver.navigate().to(System.getenv("baseUrl"));
     }
+
 }
