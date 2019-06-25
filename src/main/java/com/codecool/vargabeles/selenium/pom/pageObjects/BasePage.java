@@ -10,11 +10,12 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    private final int TimeoutValue = 7;
+    private final int TimeoutValue = 10;
 
     protected BasePage(WebDriver webDriver) {
         this.driver = webDriver;
         wait = new WebDriverWait(driver, 10);
+
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, TimeoutValue), this);
     }
 

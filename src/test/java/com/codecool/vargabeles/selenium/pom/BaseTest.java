@@ -13,6 +13,7 @@ public class BaseTest {
     void setUp() {
         System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         JiraLogin login = new JiraLogin(driver);
         login.loginToJira(System.getenv("username"), System.getenv("password"));
     }

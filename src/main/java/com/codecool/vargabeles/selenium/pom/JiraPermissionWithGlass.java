@@ -4,6 +4,7 @@ import com.codecool.vargabeles.selenium.pom.pageObjects.BasePage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.GlassDocumentationPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectSettingPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -19,7 +20,7 @@ public class JiraPermissionWithGlass extends BasePage {
         ProjectPage projectPage = new ProjectPage(driver);
         ProjectSettingPage projectSettingPage = new ProjectSettingPage(driver);
 
-        wait.until(ExpectedConditions.urlToBe(System.getenv("baseUrl")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span/img[1]")));
         navigate("projects/PP1?selectedItem=com.codecanvas.glass:glass");
         projectPage.clickOnProjectSetting();
         projectSettingPage.clickOnPermission();
