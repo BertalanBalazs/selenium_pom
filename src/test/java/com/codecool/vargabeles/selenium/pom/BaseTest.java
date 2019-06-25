@@ -5,16 +5,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class BaseTest {
+class BaseTest {
 
     WebDriver driver;
 
     @BeforeEach
     void setUp() {
-        JiraLogin login = new JiraLogin(driver);
         System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
         driver = new ChromeDriver();
-        login.loginToJira(System.getenv("username"), System.getenv("password"));
+        LoginPage login = new LoginPage(driver);
+        login.login(System.getenv("username"), System.getenv("password"));
     }
 
     @AfterEach
