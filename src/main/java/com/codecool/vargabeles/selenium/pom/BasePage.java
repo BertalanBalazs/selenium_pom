@@ -2,18 +2,17 @@ package com.codecool.vargabeles.selenium.pom;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 class BasePage {
 
-    private WebDriver driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     BasePage(WebDriver webDriver) {
         this.driver = webDriver;
         wait = new WebDriverWait(this.driver, 10);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);
+        PageFactory.initElements(driver, this);
     }
 
     void navigate(String subUrl){

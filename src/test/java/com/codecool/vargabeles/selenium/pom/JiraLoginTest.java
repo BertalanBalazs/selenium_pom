@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class JiraLoginTest {
 
@@ -31,6 +32,20 @@ class JiraLoginTest {
         loginPage.login(System.getenv("username"), System.getenv("password"));
         mainPage = new MainPage(driver);
         assertTrue(mainPage.isLoggedIn());
+    }
+
+    @Test
+    void testLoginWithEmptyFields() {
+        loginPage.login("", "");
+        mainPage = new MainPage(driver);
+        assertFalse(mainPage.isLoggedIn());
+    }
+
+    @Test
+    void testLoginWithWrongPassword() {
+        loginPage.login(System.getenv("username"), "thisiswrong");
+        mainPage = new MainPage(driver);
+        assertFalse(mainPage.isLoggedIn());
     }
 
 }

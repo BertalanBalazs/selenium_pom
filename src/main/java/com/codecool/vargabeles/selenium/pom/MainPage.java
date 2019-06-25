@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 public class MainPage extends BasePage{
 
     @FindBy(id="header-details-user-fullname")
-    private WebElement header;
+    WebElement header;
 
    public MainPage(WebDriver webDriver) {
         super(webDriver);
