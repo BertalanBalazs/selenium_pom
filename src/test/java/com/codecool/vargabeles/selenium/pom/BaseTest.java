@@ -11,9 +11,9 @@ public class BaseTest {
 
     @BeforeEach
     void setUp() {
-        JiraLogin login = new JiraLogin(driver);
         System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
         driver = new ChromeDriver();
+        JiraLogin login = new JiraLogin(driver);
         login.loginToJira(System.getenv("username"), System.getenv("password"));
     }
 
