@@ -7,24 +7,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
-    private final int TimeoutValue = 7;
+    public WebDriver driver;
+    public WebDriverWait wait;
 
     public BasePage(WebDriver webDriver) {
         this.driver = webDriver;
-        wait = new WebDriverWait(driver, 10);
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, TimeoutValue), this);
+        wait = new WebDriverWait(this.driver, 10);
+        PageFactory.initElements(driver, this);
     }
 
-
-    protected void navigate(String subUrl){
+    public void navigate(String subUrl){
         driver.navigate().to(System.getenv("baseUrl") + subUrl);
     }
 
-    protected void navigate(){
+    public void navigate(){
         driver.navigate().to(System.getenv("baseUrl"));
     }
-
 }
