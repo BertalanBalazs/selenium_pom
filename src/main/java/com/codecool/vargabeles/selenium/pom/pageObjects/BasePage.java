@@ -7,16 +7,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 
-    WebDriver driver;
-    WebDriverWait wait;
+    public WebDriver driver;
+    public WebDriverWait wait;
 
-    BasePage(WebDriver webDriver) {
+    public BasePage(WebDriver webDriver) {
         this.driver = webDriver;
         wait = new WebDriverWait(this.driver, 10);
         PageFactory.initElements(driver, this);
     }
 
-    void navigate(String subUrl){
+    public void navigate(String subUrl){
         driver.navigate().to(System.getenv("baseUrl") + subUrl);
     }
 
