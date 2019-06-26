@@ -34,6 +34,7 @@ public class IssuePage extends BasePage {
     }
 
     public void clickToGlassDocumentation() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Glass Documentation']")));
         glassDocumentation.click();
     }
 
