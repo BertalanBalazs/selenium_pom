@@ -20,7 +20,7 @@ public class BasePage {
         driver.navigate().to(System.getenv("baseUrl") + subUrl);
     }
 
-    void navigate(){
+    public void navigate(){
         driver.navigate().to(System.getenv("baseUrl"));
     }
 }
