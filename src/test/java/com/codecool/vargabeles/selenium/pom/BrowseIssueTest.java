@@ -2,6 +2,8 @@ package com.codecool.vargabeles.selenium.pom;
 
 import com.codecool.vargabeles.selenium.pom.pageObjects.IssuePage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,46 +18,31 @@ public class BrowseIssueTest extends BaseTest{
     }
 
     //TODO separate?
-    @Test
-    void projectJetiHasThreeIssuesAndIndexedProperly(){
+    @ParameterizedTest
+    @ValueSource(strings = {"JETI-1", "JETI-2","JETI-3"})
+    void projectJetiHasThreeIssuesAndIndexedProperly(String issueTitle){
         IssuePage issuePage = new IssuePage(driver);
 
-        issuePage.navigate("/browse/JETI-1");
-        assertTrue(issuePage.getPageTitle().contains("JETI-1"));
-
-        issuePage.navigate("/browse/JETI-2");
-        assertTrue(issuePage.getPageTitle().contains("JETI-2"));
-
-        issuePage.navigate("/browse/JETI-3");
-        assertTrue(issuePage.getPageTitle().contains("JETI-3"));
+        issuePage.navigate("/browse/" + issueTitle);
+        assertTrue(issuePage.getPageTitle().contains(issueTitle));
     }
 
-    @Test
-    void projectToucanHasThreeIssuesAndIndexedProperly(){
+    @ParameterizedTest
+    @ValueSource(strings = {"TOUCAN-1", "TOUCAN-2","TOUCAN-3"})
+    void projectToucanHasThreeIssuesAndIndexedProperly(String issueTitle){
         IssuePage issuePage = new IssuePage(driver);
 
-        issuePage.navigate("/browse/TOUCAN-1");
-        assertTrue(issuePage.getPageTitle().contains("TOUCAN-1"));
-
-        issuePage.navigate("/browse/TOUCAN-2");
-        assertTrue(issuePage.getPageTitle().contains("TOUCAN-2"));
-
-        issuePage.navigate("/browse/TOUCAN-3");
-        assertTrue(issuePage.getPageTitle().contains("TOUCAN-3"));
+        issuePage.navigate("/browse/" + issueTitle);
+        assertTrue(issuePage.getPageTitle().contains(issueTitle));
     }
 
-    @Test
-    void projectCoalaHasThreeIssuesAndIndexedProperly(){
+    @ParameterizedTest
+    @ValueSource(strings = {"COALA-1", "COALA-2","COALA-3"})
+    void projectCoalaHasThreeIssuesAndIndexedProperly(String issueTitle){
         IssuePage issuePage = new IssuePage(driver);
 
-        issuePage.navigate("/browse/COALA-1");
-        assertTrue(issuePage.getPageTitle().contains("COALA-1"));
-
-        issuePage.navigate("/browse/COALA-2");
-        assertTrue(issuePage.getPageTitle().contains("COALA-2"));
-
-        issuePage.navigate("/browse/COALA-3");
-        assertTrue(issuePage.getPageTitle().contains("COALA-3"));
+        issuePage.navigate("/browse/" + issueTitle);
+        assertTrue(issuePage.getPageTitle().contains(issueTitle));
     }
 }
 
