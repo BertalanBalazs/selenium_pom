@@ -1,4 +1,4 @@
-package com.codecool.vargabeles.selenium.pom.pageObject;
+package com.codecool.vargabeles.selenium.pom.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;

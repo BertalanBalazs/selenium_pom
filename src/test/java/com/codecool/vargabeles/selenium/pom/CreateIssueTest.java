@@ -1,9 +1,9 @@
 package com.codecool.vargabeles.selenium.pom;
 
-import com.codecool.vargabeles.selenium.pom.pageObject.BasePage;
-import com.codecool.vargabeles.selenium.pom.pageObject.CreateScreen;
-import com.codecool.vargabeles.selenium.pom.pageObject.IssuePage;
-import com.codecool.vargabeles.selenium.pom.pageObject.MainPage;
+import com.codecool.vargabeles.selenium.pom.pageObjects.BasePage;
+import com.codecool.vargabeles.selenium.pom.pageObjects.CreateScreen;
+import com.codecool.vargabeles.selenium.pom.pageObjects.IssuePage;
+import com.codecool.vargabeles.selenium.pom.pageObjects.MainPage;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 

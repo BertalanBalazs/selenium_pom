@@ -1,6 +1,6 @@
 package com.codecool.vargabeles.selenium.pom;
 
-import com.codecool.vargabeles.selenium.pom.pageObject.JiraLogin;
+import com.codecool.vargabeles.selenium.pom.pageObjects.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -12,10 +12,10 @@ public class BaseTest {
 
     @BeforeEach
     void setUp() {
-        driver = new ChromeDriver();
-        JiraLogin login = new JiraLogin(driver);
         System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
-        login.loginToJira(System.getenv("username"), System.getenv("password"));
+        driver = new ChromeDriver();
+        LoginPage login = new LoginPage(driver);
+        login.login(System.getenv("username"), System.getenv("password"));
     }
 
     @AfterEach
