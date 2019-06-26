@@ -19,6 +19,9 @@ public class LoginPage extends BasePage{
     @FindBy(id="login")
     private WebElement login;
 
+    @FindBy(xpath = "//*[@id=\"usernameerror\"]/p")
+    private WebElement errorMessage;
+
     public LoginPage(WebDriver driver){
         super(driver);
     }
@@ -27,8 +30,7 @@ public class LoginPage extends BasePage{
         login.click();
     }
 
-
-    public void login(String username, String password){
+    public void validLogin(String username, String password){
         navigate();
         wait.until(ExpectedConditions.visibilityOf(this.userName));
         wait.until(ExpectedConditions.visibilityOf(this.password));
@@ -37,8 +39,18 @@ public class LoginPage extends BasePage{
         this.clickLogin();
         MainPage mainPage = new MainPage(driver);
         wait.until(ExpectedConditions.visibilityOf(mainPage.header));
+    }
 
+    public String invalidLogin(String username, String password){
+        navigate();
+        wait.until(ExpectedConditions.visibilityOf(this.userName));
+        wait.until(ExpectedConditions.visibilityOf(this.password));
+        this.userName.sendKeys(username);
+        this.password.sendKeys(password);
+        this.clickLogin();
+        wait.until(ExpectedConditions.visibilityOf(errorMessage));
 
+        return errorMessage.getText();
     }
 
 }
