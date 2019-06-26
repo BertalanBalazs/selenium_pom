@@ -1,15 +1,16 @@
 package com.codecool.vargabeles.selenium.pom.pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class EditIssuePage extends BasePage {
 
-    private By editPageLocator = By.id("edit-issue-dialog");
-    private By summaryFieldLocator = By.id("summary");
-    private By submitButtonLocator = By.id("edit-issue-submit");
+    @FindBy(id="edit-issue-dialog") private WebElement editPageLocator;
+    @FindBy(id="summary") private WebElement summaryFieldLocator;
+    @FindBy(id="edit-issue-submit") private WebElement submitButtonLocator;
 
 
     public EditIssuePage(WebDriver webDriver) {
@@ -17,14 +18,9 @@ public class EditIssuePage extends BasePage {
     }
 
     public void editSummaryField(String testText) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(editPageLocator));
-        driver.findElement(summaryFieldLocator).sendKeys(testText);
-        driver.findElement(submitButtonLocator).click();
+        wait.until(ExpectedConditions.visibilityOf(editPageLocator));
+        this.summaryFieldLocator.sendKeys(testText);
+        this.submitButtonLocator.click();
     }
 
-    public void restoreSummeryField(String origiText) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(editPageLocator));
-        driver.findElement(summaryFieldLocator).sendKeys(origiText);
-        driver.findElement(submitButtonLocator).click();
-    }
 }
