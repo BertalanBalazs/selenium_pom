@@ -1,8 +1,10 @@
 package com.codecool.vargabeles.selenium.pom.pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IssuePage extends BasePage {
     @FindBy(xpath = "//a[@id='edit-issue']/span[@class='trigger-label' and 2]")
@@ -19,6 +21,7 @@ public class IssuePage extends BasePage {
     }
 
     public void sendKeyToComponentsTextarea(String text) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//textarea[@id='components-textarea']")));
         componentsTextarea.sendKeys(text);
     }
 
@@ -34,4 +37,10 @@ public class IssuePage extends BasePage {
         glassDocumentation.click();
     }
 
+
+    public void addComponentToIssue(String component) {
+        clickToEditButton();
+        sendKeyToComponentsTextarea(component);
+        clickToEditSubmitButton();
+    }
 }

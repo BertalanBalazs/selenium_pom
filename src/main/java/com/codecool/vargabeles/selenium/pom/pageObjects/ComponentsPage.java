@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ComponentsPage extends BasePage {
     @FindBy(xpath = "//input[@name='name']")
@@ -35,6 +36,7 @@ public class ComponentsPage extends BasePage {
     }
 
     public void clickToComponentFilter() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"component-filter\"]")));
         componentFilter.click();
     }
 
@@ -66,4 +68,32 @@ public class ComponentsPage extends BasePage {
     public void clickToRemoveComponentRadioButton(int id) {
         driver.findElement(By.xpath("//*[@id=\"component-" + id + "-delete-dialog\"]/div[2]/div/form/div[1]/fieldset/div[2]/label")).click();
     }
+
+    public void makeNewComponent(String name, String assingee) {
+        sendKeyToNameInput(name);
+        sendKeyToAssigneeInput(assingee);
+        clickToComponentFilter();
+        clickToAddButton();
+    }
+
+    public void deleteComponent(String componentName) {
+        int i = 1;
+        while (true) {
+            try {
+                if (componentName.equals(driver.findElement(By.cssSelector("#components-table > tbody.items > tr:nth-child(" + i + ") > td.components-table__name > div > a")).getText())) {
+                    clickToNthElementAction(i);
+                    getNthDataComponentId(i);
+                    int id = getNthDataComponentId(i);
+                    clickToDeleteComponent(id);
+                    clickToRemoveComponentRadioButton(id);
+                    clickToDeleteSubmitButton();
+                    break;
+                }
+                i++;
+            } catch (Exception e) {
+                break;
+            }
+        }
+    }
+
 }

@@ -17,10 +17,10 @@ abstract public class BaseTest {
         driver.manage().window().maximize();
         LoginPage login = new LoginPage(driver);
         login.login(System.getenv("username"), System.getenv("password"));
-        makeInstance();
+        makePomInstances();
     }
 
-    abstract protected void makeInstance();
+    abstract protected void makePomInstances();
 
     @AfterEach
     void tearDown() {

@@ -35,6 +35,8 @@ public class ProjectPage extends BasePage {
     }
 
     public void clickOnComponents(){
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//span[text()='Components']")));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//span[text()='Components']")));
         components.click();
     }
 
