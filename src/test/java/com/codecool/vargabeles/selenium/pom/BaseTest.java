@@ -15,7 +15,7 @@ class BaseTest {
         System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
         driver = new ChromeDriver();
         LoginPage login = new LoginPage(driver);
-        login.validLogin();
+        login.validLogin(System.getenv("username"), System.getenv("password"));
     }
 
     @AfterEach

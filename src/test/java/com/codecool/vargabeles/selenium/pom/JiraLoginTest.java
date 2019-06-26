@@ -30,7 +30,7 @@ class JiraLoginTest {
 
     @Test
     void testLoginWithValidCredentials() {
-        loginPage.validLogin();
+        loginPage.validLogin(System.getenv("username"),System.getenv("password"));
         mainPage = new MainPage(driver);
         assertTrue(mainPage.isLoggedIn());
     }
