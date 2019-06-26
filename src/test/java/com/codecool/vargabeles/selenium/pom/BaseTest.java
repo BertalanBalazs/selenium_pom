@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class BaseTest {
+abstract public class BaseTest {
 
     WebDriver driver;
 
@@ -16,7 +16,10 @@ public class BaseTest {
         driver.manage().window().maximize();
         JiraLogin login = new JiraLogin(driver);
         login.loginToJira(System.getenv("username"), System.getenv("password"));
+        makeInstance();
     }
+
+    abstract protected void makeInstance();
 
     @AfterEach
     void tearDown() {

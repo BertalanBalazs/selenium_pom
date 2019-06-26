@@ -12,9 +12,13 @@ class JiraComponentsWithGlassTest extends BaseTest {
 
     @Test
     void categorizeIssues() {
-        jiraComponentsWithGlass = new JiraComponentsWithGlass(driver);
         int result = jiraComponentsWithGlass.categorizeIssues();
         Assert.assertEquals(result, 1);
         jiraComponentsWithGlass.clearCategorizeIssues();
+    }
+
+    @Override
+    protected void makeInstance() {
+        jiraComponentsWithGlass = new JiraComponentsWithGlass(driver);
     }
 }
