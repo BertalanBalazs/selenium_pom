@@ -1,5 +1,6 @@
 package com.codecool.vargabeles.selenium.pom;
 
+import com.codecool.vargabeles.selenium.pom.pageObjects.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
