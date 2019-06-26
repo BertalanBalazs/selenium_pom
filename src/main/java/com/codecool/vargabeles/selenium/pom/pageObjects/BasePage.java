@@ -7,13 +7,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 
-    public WebDriver driver;
-    public WebDriverWait wait;
+    protected final WebDriver driver;
+    protected WebDriverWait wait;
 
-    public BasePage(WebDriver webDriver) {
-        this.driver = webDriver;
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
         wait = new WebDriverWait(this.driver, 10);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 10), this);
     }
 
     public void navigate(String subUrl){
