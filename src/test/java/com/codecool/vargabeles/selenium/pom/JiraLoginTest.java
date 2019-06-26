@@ -1,13 +1,14 @@
 package com.codecool.vargabeles.selenium.pom;
 
+import com.codecool.vargabeles.selenium.pom.pageObjects.LoginPage;
+import com.codecool.vargabeles.selenium.pom.pageObjects.MainPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class JiraLoginTest {
 
@@ -29,23 +30,22 @@ class JiraLoginTest {
 
     @Test
     void testLoginWithValidCredentials() {
-        loginPage.login(System.getenv("username"), System.getenv("password"));
+        loginPage.validLogin();
         mainPage = new MainPage(driver);
         assertTrue(mainPage.isLoggedIn());
     }
 
     @Test
     void testLoginWithEmptyFields() {
-        loginPage.login("", "");
-        mainPage = new MainPage(driver);
-        assertFalse(mainPage.isLoggedIn());
+        String errormessage = loginPage.invalidLogin("", "");
+        assertEquals("Sorry, your username and password are incorrect - please try again.", errormessage);
+
     }
 
     @Test
     void testLoginWithWrongPassword() {
-        loginPage.login(System.getenv("username"), "thisiswrong");
-        mainPage = new MainPage(driver);
-        assertFalse(mainPage.isLoggedIn());
+        String errormessage = loginPage.invalidLogin(System.getenv("username"), "");
+        assertEquals("Sorry, your username and password are incorrect - please try again.", errormessage);
     }
 
 }
