@@ -1,7 +1,9 @@
-package com.codecool.vargabeles.selenium.pom;
+package com.codecool.vargabeles.selenium.pom.pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IssuePage extends BasePage {
 
@@ -22,7 +24,18 @@ public class IssuePage extends BasePage {
         driver.findElement(deleteIssueButtonLocator).click();
     }
 
+    public void waitForDeleteIssueConfirmButton(){
+            wait.until(ExpectedConditions.visibilityOfElementLocated(deleteIssueConfirmButtonLocator));
+    }
+
     public void clickdeleteIssueConfirmButton() {
         driver.findElement(deleteIssueConfirmButtonLocator).click();
+    }
+
+    public void deleteIssueFromItsPage() {
+        clickMoreButton();
+        clickDeleteIssueButton();
+        waitForDeleteIssueConfirmButton();
+        clickdeleteIssueConfirmButton();
     }
 }

@@ -1,4 +1,4 @@
-package com.codecool.vargabeles.selenium.pom;
+package com.codecool.vargabeles.selenium.pom.pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -21,7 +21,7 @@ public class JiraLogin extends BasePage{
         driver.findElement(login).click();
     }
 
-    boolean isLoggedIn() {
+    public boolean isLoggedIn() {
         try {
             driver.findElement(header).isDisplayed();
         } catch (NoSuchElementException e) {
