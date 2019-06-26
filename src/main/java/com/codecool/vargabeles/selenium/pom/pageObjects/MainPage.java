@@ -10,6 +10,7 @@ public class MainPage extends BasePage{
 
     @FindBy(id="header-details-user-fullname")
     WebElement header;
+
     private By createIssueButton = By.id("create_link");
 
 
