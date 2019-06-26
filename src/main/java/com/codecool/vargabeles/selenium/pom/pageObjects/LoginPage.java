@@ -23,7 +23,7 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
-    public void clickLogin(){
+    private void clickLogin(){
         login.click();
     }
 
