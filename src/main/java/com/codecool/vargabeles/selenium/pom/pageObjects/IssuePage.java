@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.NoSuchElementException;
 
 
 public class IssuePage extends BasePage {
@@ -16,6 +17,12 @@ public class IssuePage extends BasePage {
     @FindBy(id="issuetype-single-select") private WebElement issueTypeSelectLocator;
     @FindBy(xpath="//span[@class='aui-icon aui-icon-small aui-iconfont-success']") private WebElement submitButtonLocator;
 //    @FindBy(xpath="//*[@id=\"issuetype-form\"]/span") private WebElement loadingSubmitLocator;
+
+    private By moreButtonLocator = By.id("opsbar-operations_more");
+    private By deleteIssueButtonLocator = By.cssSelector("aui-item-link[title=\"Delete this issue\"]");
+    private By deleteIssueConfirmButtonLocator = By.id("delete-issue-submit");
+    private By issueTypeLocator = By.id("type-val");
+
 
     public IssuePage(WebDriver webDriver) {
         super(webDriver);
@@ -44,6 +51,35 @@ public class IssuePage extends BasePage {
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"issuetype-form\"]/span"))));
         return this.issueTypeLocator.getText().equals(type);
     }
+
+    public void clickMoreButton() {
+        driver.findElement(moreButtonLocator).click();
+    }
+
+    public void clickDeleteIssueButton() {
+        driver.findElement(deleteIssueButtonLocator).click();
+    }
+
+    public void waitForDeleteIssueConfirmButton(){
+            wait.until(ExpectedConditions.visibilityOfElementLocated(deleteIssueConfirmButtonLocator));
+    }
+
+    public void clickdeleteIssueConfirmButton() {
+        driver.findElement(deleteIssueConfirmButtonLocator).click();
+    }
+
+    public void deleteIssueFromItsPage() {
+        clickMoreButton();
+        clickDeleteIssueButton();
+        waitForDeleteIssueConfirmButton();
+        clickdeleteIssueConfirmButton();
+    }
+
+    public boolean isIssueTypeCorrect(String issueType) {
+        if (
+        driver.findElement(issueTypeLocator).getText().equals(issueType) ){
+            return true;
+        }
+        else return false;
+    }
 }
-
-

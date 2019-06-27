@@ -12,12 +12,19 @@ public class GlassDocumentationPage extends BasePage {
     @FindBy(xpath = "//a[text()='Permissions']")
     WebElement permission;
 
+    @FindBy(xpath = "//a[@id='aui-uid-2']")
+    WebElement versions;
+
     public GlassDocumentationPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public void clickOnPermission() {
         permission.click();
+    }
+
+    public void clickOnVersions() {
+        versions.click();
     }
 
     public List<Boolean> getPermissionList(){
@@ -39,5 +46,9 @@ public class GlassDocumentationPage extends BasePage {
             permissionList.add(false);
         }
         return permissionList;
+    }
+
+    public boolean checkNewlyCreatedTestVersion(String versionName){
+        return  driver.findElement(By.xpath("//*[text()='" + versionName + "']")).isDisplayed();
     }
 }
