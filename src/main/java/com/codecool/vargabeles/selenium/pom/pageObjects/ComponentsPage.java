@@ -19,6 +19,8 @@ public class ComponentsPage extends BasePage {
     WebElement issuesLink;
     @FindBy(xpath = "//*[@id=\"submit\"]")
     WebElement deleteSubmitButton;
+    @FindBy(xpath = "//input[@id='component-filter-text']")
+    WebElement componentFilterInput;
 
 
     public ComponentsPage(WebDriver webDriver) {
@@ -52,11 +54,12 @@ public class ComponentsPage extends BasePage {
         deleteSubmitButton.click();
     }
 
-    public void clickToNthElementAction() {
+    public void clickToElementAction() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//tr[2]/td[@class='components-table__name' and 1]")));
         driver.findElement(By.cssSelector("#components-table > tbody.items > tr:nth-child(1) > td.dynamic-table__actions > div > a > span")).click();
     }
 
-    public int getNthDataComponentId() {
+    public int getDataComponentId() {
         return Integer.parseInt(driver.findElement(By.cssSelector("#components-table > tbody.items > tr:nth-child(1)")).getAttribute("data-component-id"));
     }
 
@@ -65,7 +68,12 @@ public class ComponentsPage extends BasePage {
     }
 
     public void clickToRemoveComponentRadioButton(int id) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"component-" + id + "-delete-dialog\"]/div[2]/div/form/div[1]/fieldset/div[2]/label")));
         driver.findElement(By.xpath("//*[@id=\"component-" + id + "-delete-dialog\"]/div[2]/div/form/div[1]/fieldset/div[2]/label")).click();
+    }
+
+    public void sendKeyToComponentFilterInput(String componentName){
+        componentFilterInput.sendKeys(componentName);
     }
 
     public void makeNewComponent(String name, String assignee) {
@@ -82,13 +90,11 @@ public class ComponentsPage extends BasePage {
 
     public void deleteComponent(String componentName) {
         try {
-            driver.findElement(By.xpath("//input[@id='component-filter-text']")).sendKeys(componentName);
-            Thread.sleep(500);
-            clickToNthElementAction();
-            getNthDataComponentId();
-            int id = getNthDataComponentId();
+            sendKeyToComponentFilterInput(componentName);
+            clickToElementAction();
+            getDataComponentId();
+            int id = getDataComponentId();
             clickToDeleteComponent(id);
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"component-" + id + "-delete-dialog\"]/div[2]/div/form/div[1]/fieldset/div[2]/label")));
             clickToRemoveComponentRadioButton(id);
             clickToDeleteSubmitButton();
         } catch (Exception e) {
