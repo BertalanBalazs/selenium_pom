@@ -21,7 +21,6 @@ public class IssuePage extends BasePage {
     private By moreButtonLocator = By.id("opsbar-operations_more");
     private By deleteIssueButtonLocator = By.cssSelector("aui-item-link[title=\"Delete this issue\"]");
     private By deleteIssueConfirmButtonLocator = By.id("delete-issue-submit");
-    private By issueTypeLocator = By.id("type-val");
 
 
     public IssuePage(WebDriver webDriver) {
@@ -34,7 +33,7 @@ public class IssuePage extends BasePage {
 
     public boolean validateSummaryEdited(String textText) {
         wait.until(ExpectedConditions.visibilityOf(updatedPopupLocator));
-        return this.summaryField.getText().equals(textText);
+        return summaryField.getText().equals(textText);
     }
 
     public void editIssueType(String issueType) {
@@ -45,6 +44,7 @@ public class IssuePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(submitButtonLocator));
         this.submitButtonLocator.click();
     }
+
 
     public boolean validateIssueTypeEdited(String type) {
 //        wait.until(ExpectedConditions.invisibilityOf(loadingSubmitLocator));
@@ -76,10 +76,8 @@ public class IssuePage extends BasePage {
     }
 
     public boolean isIssueTypeCorrect(String issueType) {
-        if (
-        driver.findElement(issueTypeLocator).getText().equals(issueType) ){
-            return true;
-        }
-        else return false;
+        return this.issueTypeLocator.getText().equals(issueType);
     }
+
+
 }
