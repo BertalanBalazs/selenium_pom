@@ -23,4 +23,8 @@ public class BasePage {
     public void navigate(){
         driver.navigate().to(System.getenv("baseUrl"));
     }
+
+    public String getCurrentPageTitle(){
+        return driver.getTitle();
+    }
 }
