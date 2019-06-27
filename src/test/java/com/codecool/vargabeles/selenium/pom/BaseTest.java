@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-class BaseTest {
+abstract class BaseTest {
 
     WebDriver driver;
 
@@ -17,7 +17,10 @@ class BaseTest {
         driver.manage().window().maximize();
         LoginPage login = new LoginPage(driver);
         login.validLogin(System.getenv("username"), System.getenv("password"));
+        makePomInstances();
     }
+
+    protected abstract void makePomInstances();
 
     @AfterEach
     void tearDown() {

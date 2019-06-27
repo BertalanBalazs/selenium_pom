@@ -4,9 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GlassDocumentationPage extends BasePage {
     @FindBy(xpath = "//a[text()='Permissions']")
@@ -30,22 +28,21 @@ public class GlassDocumentationPage extends BasePage {
     public List<Boolean> getPermissionList() {
         List<Boolean> permissionList = new ArrayList<>();
 
-        if (driver.findElement(By.xpath("//*[@id=\"glass-permissions-panel\"]/div/table/tbody/tr[6]/td[3]/div")).getAttribute("class").equals("glass-true-icon")) {
-            permissionList.add(true);
-        } else {
-            permissionList.add(false);
+    public int getNumOfComponentsOfIssue() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Components ']")));
+        int i = 1;
+        //investigate the correction
+        while (true) {
+            try {
+                if ("testing".equals(driver.findElement(By.cssSelector("#components-table > tbody.items > tr:nth-child(" + i + ") > td.components-table__name > div > a")).getText())) {
+                    return Integer.parseInt(driver.findElement(By.cssSelector("#components-table > tbody.items > tr:nth-child(" + i + ") > td.components-table__issues-count > div > a")).getText());
+                }
+                i++;
+            } catch (NumberFormatException e) {
+                break;
+            }
         }
-        if (driver.findElement(By.xpath("//*[@id=\"glass-permissions-panel\"]/div/table/tbody/tr[12]/td[3]")).getAttribute("class").equals("glass-true-icon")) {
-            permissionList.add(true);
-        } else {
-            permissionList.add(false);
-        }
-        if (driver.findElement(By.xpath("//*[@id=\"glass-permissions-panel\"]/div/table/tbody/tr[18]/td[3]/div")).getAttribute("class").equals("glass-true-icon")) {
-            permissionList.add(true);
-        } else {
-            permissionList.add(false);
-        }
-        return permissionList;
+        return Integer.parseInt(null);
     }
 
     public boolean checkNewlyCreatedTestVersion(String versionName) {

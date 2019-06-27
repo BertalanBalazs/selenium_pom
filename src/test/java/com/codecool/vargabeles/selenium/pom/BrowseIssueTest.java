@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BrowseIssueTest extends BaseTest {
+public class BrowseIssueTest{
 
     private LoginPage loginPage;
     private WebDriver driver;
@@ -31,10 +31,10 @@ class BrowseIssueTest extends BaseTest {
 
     @Test
     void createdIssueExists() {
+        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         IssuePage issuePage = new IssuePage(driver);
         issuePage.navigate("/browse/SAND-40");
-
-        assertTrue(issuePage.getPageTitle().contains("SAND-40"));
+        assertTrue(issuePage.getCurrentPageTitle().contains("SAND-40"));
     }
 
     @ParameterizedTest
@@ -44,6 +44,6 @@ class BrowseIssueTest extends BaseTest {
         loginPage.validLogin(username, System.getenv("password"));
         issuePage.navigate("/browse/" + issueTitle);
 
-        assertTrue(issuePage.getPageTitle().contains(issueTitle));
+        assertTrue(issuePage.getCurrentPageTitle().contains(issueTitle));
     }
 }

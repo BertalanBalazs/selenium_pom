@@ -1,9 +1,6 @@
 package com.codecool.vargabeles.selenium.pom.pageObjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -16,14 +13,24 @@ public class CreateScreen extends BasePage {
 
     public CreateScreen(WebDriver driver) {
         super(driver);
+    private By issueTypeDropdownLocator = By.id("issuetype-field");
+
+
+    public CreateScreen(WebDriver webDriver) {
+        super(webDriver);
     }
 
     private void waitUntilCreateScreenIsLoaded() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-submit")));
     }
+//    public void waitUntilCreateScreenIsLoaded() {
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-submit")));
+//    }
 
     public void chooseProject(String projectName) {
-        waitUntilCreateScreenIsLoaded();
+//        waitUntilCreateScreenIsLoaded();
+        waitUntilFieldsAreLoaded();
+
         WebElement projectDropdown = driver.findElement(projectDropdownLocator);
 
         projectDropdown.click();
@@ -31,7 +38,18 @@ public class CreateScreen extends BasePage {
         projectDropdown.sendKeys(Keys.RETURN);
     }
 
-    private void waitUntilSummaryIsLoaded() {
+    public void chooseIssueType(String issueType) {
+//        waitUntilCreateScreenIsLoaded();
+        waitUntilFieldsAreLoaded();
+
+        WebElement issueTypeDropdown = driver. findElement(issueTypeDropdownLocator);
+
+        issueTypeDropdown.click();
+        issueTypeDropdown.sendKeys(issueType);
+        issueTypeDropdown.sendKeys(Keys.RETURN);
+    }
+
+    public void waitUntilFieldsAreLoaded() {
 
         wait.until((ExpectedCondition<Boolean>) driver -> {
             assert driver != null;
@@ -43,7 +61,7 @@ public class CreateScreen extends BasePage {
     }
 
     public void fillSummary(String summaryText) {
-        waitUntilSummaryIsLoaded();
+        waitUntilFieldsAreLoaded();
         driver.findElement(summaryFieldLocator).click();
         driver.findElement(summaryFieldLocator).sendKeys(summaryText);
     }
