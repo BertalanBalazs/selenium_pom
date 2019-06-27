@@ -21,6 +21,7 @@ public class IssuePage extends BasePage {
     private By moreButtonLocator = By.id("opsbar-operations_more");
     private By deleteIssueButtonLocator = By.cssSelector("aui-item-link[title=\"Delete this issue\"]");
     private By deleteIssueConfirmButtonLocator = By.id("delete-issue-submit");
+    private By issueTypeLocator = By.id("type-val");
 
 
     public IssuePage(WebDriver webDriver) {
@@ -72,5 +73,13 @@ public class IssuePage extends BasePage {
         clickDeleteIssueButton();
         waitForDeleteIssueConfirmButton();
         clickdeleteIssueConfirmButton();
+    }
+
+    public boolean isIssueTypeCorrect(String issueType) {
+        if (
+        driver.findElement(issueTypeLocator).getText().equals(issueType) ){
+            return true;
+        }
+        else return false;
     }
 }
