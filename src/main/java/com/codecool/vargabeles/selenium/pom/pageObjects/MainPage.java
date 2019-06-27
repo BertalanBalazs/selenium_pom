@@ -17,8 +17,6 @@ public class MainPage extends BasePage{
     @FindBy(id="log_out")
     WebElement logoutOption;
 
-    private By createIssueButton = By.id("create_link");
-
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);

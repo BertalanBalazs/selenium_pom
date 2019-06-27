@@ -81,9 +81,4 @@ class EditIssueTest {
         issuePage.navigate("/browse/" + issueTitle);
         issuePage.editIssueType("story-1");
     }
-
-    @Override
-    protected void makePomInstances() {
-
-    }
 }
