@@ -31,7 +31,7 @@ public class GlassDocumentationPermissionPage extends BasePage {
 
     public String[][] readPermissionDataFromCsv() {
         String[][] records = new String[34][12];
-        try (BufferedReader br = new BufferedReader(new FileReader("/home/bertalan/Desktop/codecool/Test_Branch/3.week/selenium_pom/src/test/resources/permissionDatas.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../selenium_pom/src/main/resources/permissionDatas.csv"))) {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
