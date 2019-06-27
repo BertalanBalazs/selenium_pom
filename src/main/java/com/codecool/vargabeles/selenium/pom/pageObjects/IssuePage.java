@@ -34,7 +34,10 @@ public class IssuePage extends BasePage {
     }
 
     public void clickToGlassDocumentation() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//form[@class='aui']/div[@class='form-body' and 1]")));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Glass Documentation']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Glass Documentation']")));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//span[text()='Glass Documentation']")));
         glassDocumentation.click();
     }
 

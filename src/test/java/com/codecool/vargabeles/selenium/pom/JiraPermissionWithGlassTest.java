@@ -4,12 +4,15 @@ import com.codecool.vargabeles.selenium.pom.pageObjects.GlassDocumentationPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.GlassDocumentationPermissionPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectSettingPage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class JiraPermissionWithGlassTest extends BaseTest {
 
@@ -18,6 +21,10 @@ class JiraPermissionWithGlassTest extends BaseTest {
     GlassDocumentationPermissionPage glassDocumentationPermissionPage;
     GlassDocumentationPage glassDocumentationPage;
 
+    @BeforeEach
+    void setup() {
+
+    }
 
     @Override
     protected void makePomInstances() {
@@ -27,24 +34,17 @@ class JiraPermissionWithGlassTest extends BaseTest {
         glassDocumentationPage = new GlassDocumentationPage(driver);
     }
 
+
     @Test
     void checkPermissions() {
-        Boolean[][] permissionList = getPermissionList();
-
-
-        projectPage.navigate("projects/PP1?selectedItem=com.codecanvas.glass:glass");
+        String[][] dataFromCsv = glassDocumentationPermissionPage.readPermissionDataFromCsv();
+        projectPage.navigate("/projects/PERMTEST?selectedItem=com.codecanvas.glass:glass");
         glassDocumentationPage.clickOnPermission();
-        Boolean[][] checkPermissionWithGlassList = glassDocumentationPermissionPage.getPermissionList();
-        assertArrayEquals(permissionList, checkPermissionWithGlassList);
+        String[][] checkPermissionWithGlassList = glassDocumentationPermissionPage.getPermissionList();
+        assertArrayEquals(dataFromCsv, checkPermissionWithGlassList);
     }
 
-    private Boolean[][] getPermissionList() {
-        Boolean[][] permissionList = new Boolean[][]{
-            { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, true, true},
-            { true, false, true, true, true, true, true, true, false, false, false, false, true, true, true, false, false, true, true, true, true, true, true, false, false, true, true, true, false, true, true, true, true, true},
-            { false, true, false, false, false, false, false, false, true, true, true, true, false, false, false, true, true, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false},
-            { false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-        };
-        return permissionList;
-    }
+
+
+
 }

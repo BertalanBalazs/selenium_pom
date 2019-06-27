@@ -2,26 +2,50 @@ package com.codecool.vargabeles.selenium.pom.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class GlassDocumentationPermissionPage extends BasePage {
     public GlassDocumentationPermissionPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public Boolean[][] getPermissionList() {
-        Boolean[][] permissionList = new Boolean[4][34];
-        for (int column = 2; column < 6; column++) {
-            for (int row = 1; row < 35; row++){
+    public String[][] getPermissionList() {
+        String[][] permissionList = new String[34][12];
+        for (int row = 1; row < 35; row++) {
+            for (int column = 2; column < 14; column++) {
                 try {
-                    WebElement trueIcon = driver.findElement(By.xpath("//*[@id=\"glass-permissions-panel\"]/div/table/tbody/tr["+row+"]/td["+column+"]/div"));
-                    permissionList[column-2][row-1] = true;
-                } catch (Exception e){
-                    permissionList[column-2][row-1] = false;
+                    driver.findElement(By.xpath("//*[@id=\"glass-permissions-panel\"]/div/table/tbody/tr[" + row + "]/td[" + column + "]/div"));
+                    permissionList[row - 1][column - 2] = "true";
+                } catch (Exception e) {
+                    permissionList[row - 1][column - 2] = "false";
                 }
             }
         }
 
         return permissionList;
+    }
+
+    public String[][] readPermissionDataFromCsv() {
+        String[][] records = new String[34][12];
+        try (BufferedReader br = new BufferedReader(new FileReader("/home/bertalan/Desktop/codecool/Test_Branch/3.week/selenium_pom/src/test/resources/permissionDatas.csv"))) {
+            String line;
+            int i = 0;
+            while ((line = br.readLine()) != null) {
+                if(i != 0){
+                    String[] values = line.split(",");
+                    records[i-1] = values;
+                }
+                i++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return records;
     }
 }

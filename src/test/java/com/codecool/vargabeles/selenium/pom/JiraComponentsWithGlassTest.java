@@ -19,22 +19,23 @@ class JiraComponentsWithGlassTest extends BaseTest {
         projectPage = new ProjectPage(driver);
         componentsPage = new ComponentsPage(driver);
         issuePage = new IssuePage(driver);
+        glassDocumentationPage = new GlassDocumentationPage(driver);
     }
 
     @Test
     void categorizeIssues() {
-        projectPage.navigate("projects/PP1?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page");
-        componentsPage.deleteComponent("test");
-        componentsPage.makeNewComponent("test", "Project lead (Administrator)");
+        projectPage.navigate("/projects/PP1?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page");
+        componentsPage.deleteComponent("testing");
+        componentsPage.makeNewComponent("testing", "Project lead (Administrator)");
         componentsPage.clickToIssuesLink();
-        issuePage.addComponentToIssue("test");
-        issuePage.clickToGlassDocumentation();
+        issuePage.addComponentToIssue("testing");
+        issuePage.navigate("/projects/PP1?selectedItem=com.codecanvas.glass:glass");
 
         int result = glassDocumentationPage.getNumOfComponentsOfIssue();
         Assert.assertEquals(result, 1);
 
         projectPage.clickOnComponents();
-        componentsPage.deleteComponent("test");
+        componentsPage.deleteComponent("testing");
     }
 
 }
