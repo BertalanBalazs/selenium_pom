@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class BrowseProjectTest extends BaseTest{
+public class BrowseProjectTest extends BaseTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/projectTitles.csv", numLinesToSkip = 1)
@@ -22,5 +22,3 @@ public class BrowseProjectTest extends BaseTest{
 
     }
 }
-
-

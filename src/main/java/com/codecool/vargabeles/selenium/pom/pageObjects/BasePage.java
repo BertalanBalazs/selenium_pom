@@ -13,18 +13,18 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, 10);
-        PageFactory.initElements(this.driver, this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 10), this);
     }
 
-    public void navigate(String subUrl){
+    public void navigate(String subUrl) {
         driver.navigate().to(System.getenv("baseUrl") + subUrl);
     }
 
-    public void navigate(){
+    public void navigate() {
         driver.navigate().to(System.getenv("baseUrl"));
     }
 
-    public String getCurrentPageTitle(){
+    public String getCurrentPageTitle() {
         return driver.getTitle();
     }
 }

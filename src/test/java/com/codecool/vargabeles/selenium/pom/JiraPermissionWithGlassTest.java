@@ -7,11 +7,6 @@ import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectSettingPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class JiraPermissionWithGlassTest extends BaseTest {
@@ -43,8 +38,4 @@ class JiraPermissionWithGlassTest extends BaseTest {
         String[][] checkPermissionWithGlassList = glassDocumentationPermissionPage.getPermissionList();
         assertArrayEquals(dataFromCsv, checkPermissionWithGlassList);
     }
-
-
-
-
 }

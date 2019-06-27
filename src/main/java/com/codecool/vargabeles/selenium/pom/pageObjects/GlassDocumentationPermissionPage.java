@@ -31,18 +31,16 @@ public class GlassDocumentationPermissionPage extends BasePage {
 
     public String[][] readPermissionDataFromCsv() {
         String[][] records = new String[34][12];
-        try (BufferedReader br = new BufferedReader(new FileReader("/home/bertalan/Desktop/codecool/Test_Branch/3.week/selenium_pom/src/test/resources/permissionDatas.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../selenium_pom/src/main/resources/permissionDatas.csv"))) {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
-                if(i != 0){
+                if (i != 0) {
                     String[] values = line.split(",");
-                    records[i-1] = values;
+                    records[i - 1] = values;
                 }
                 i++;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

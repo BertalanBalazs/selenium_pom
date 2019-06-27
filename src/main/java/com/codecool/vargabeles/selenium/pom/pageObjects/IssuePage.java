@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-
 public class IssuePage extends BasePage {
 
     @FindBy(id="edit-issue") private WebElement editButton;
@@ -22,30 +21,57 @@ public class IssuePage extends BasePage {
     @FindBy(css="aui-item-link[title=\"Delete this issue\"]") private WebElement deleteIssueButton;
     @FindBy(id="delete-issue-submit") private WebElement deleteIssueConfirmButton;
     @FindBy(xpath = "//a[@id='edit-issue']/span[@class='trigger-label' and 2]")
+    private WebElement editButton;
 
-//    WebElement editButton;
-//    @FindBy(id = "edit-issue-submit")
-    WebElement editSubmitButton;
+    @FindBy(id = "edit-issue-submit")
+    private WebElement editSubmitButton;
+
     @FindBy(xpath = "//span[text()='Glass Documentation']")
-    WebElement glassDocumentation;
+    private WebElement glassDocumentation;
+
     @FindBy(xpath = "//textarea[@id='components-textarea']")
-    WebElement componentsTextarea;
+    private WebElement componentsTextarea;
+
+    @FindBy(id = "edit-issue")
+    private WebElement editButtonLocator;
+
+    @FindBy(id = "aui-flag-container")
+    private WebElement updatedPopupLocator;
+
+    @FindBy(id = "summary-val")
+    private WebElement summaryField;
+
+    @FindBy(id = "type-val")
+    private WebElement issueTypeLocator;
+
+    @FindBy(id = "issuetype-single-select")
+    private WebElement issueTypeSelectLocator;
+
+    @FindBy(xpath = "//span[@class='aui-icon aui-icon-small aui-iconfont-success']")
+    private WebElement submitButtonLocator;
+
+    @FindBy(xpath = "//a[@id='edit-issue']")
+    private WebElement editIssueButton;
+
+    private By moreButtonLocator = By.id("opsbar-operations_more");
+    private By deleteIssueButtonLocator = By.cssSelector("aui-item-link[title=\"Delete this issue\"]");
+    private By deleteIssueConfirmButtonLocator = By.id("delete-issue-submit");
 
 
     public IssuePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void sendKeyToComponentsTextarea(String text) {
+    private void sendKeyToComponentsTextarea(String text) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//textarea[@id='components-textarea']")));
         componentsTextarea.sendKeys(text);
     }
 
-    public void clickToEditButton() {
+    private void clickToEditButton() {
         editButton.click();
     }
 
-    public void clickToEditSubmitButton() {
+    private void clickToEditSubmitButton() {
         editSubmitButton.click();
     }
 
@@ -89,6 +115,10 @@ public class IssuePage extends BasePage {
         return this.issueTypeLocator.getText().equals(type);
     }
 
+    public void clickEditIssueButton() {
+        editIssueButton.click();
+    }
+
     public void clickMoreButton() {
         moreButton.click();
     }
@@ -101,6 +131,10 @@ public class IssuePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(deleteIssueConfirmButton));
     }
 
+    public String getPageTitle() {
+        return driver.getTitle();
+    }
+
     public void clickdeleteIssueConfirmButton() {
         deleteIssueConfirmButton.click();
     }
@@ -109,7 +143,7 @@ public class IssuePage extends BasePage {
         clickMoreButton();
         clickDeleteIssueButton();
         waitForDeleteIssueConfirmButton();
-        clickdeleteIssueConfirmButton();
+        clickDeleteIssueConfirmButton();
     }
 
     public boolean isIssueTypeCorrect(String issueType) {

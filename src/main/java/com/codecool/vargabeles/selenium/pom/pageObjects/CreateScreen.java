@@ -39,10 +39,9 @@ public class CreateScreen extends BasePage {
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 String disabled = summaryField.getAttribute("disabled");
-                if(disabled == null) {
+                if (disabled == null) {
                     return true;
-                }
-                else {
+                } else {
                     return false;
                 }
             }
@@ -68,18 +67,4 @@ public class CreateScreen extends BasePage {
         waitForPopUpLink();
         popUpLink.click();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
