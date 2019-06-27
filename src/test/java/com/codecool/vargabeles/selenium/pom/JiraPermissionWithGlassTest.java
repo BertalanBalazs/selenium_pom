@@ -6,14 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JiraPermissionWithGlassTest extends BaseTest {
 
-    JiraPermissionWithGlass jiraPermissionWithGlass;
-
-
+    private JiraPermissionWithGlass jiraPermissionWithGlass;
 
     @Test
     void checkPermissions() throws InterruptedException {
         jiraPermissionWithGlass = new JiraPermissionWithGlass(driver);
         assertEquals(jiraPermissionWithGlass.checkPermissions(), jiraPermissionWithGlass.checkPermissionsWithGlass());
     }
-
 }

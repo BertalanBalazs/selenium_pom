@@ -6,16 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MainPage extends BasePage{
+public class MainPage extends BasePage {
 
-    @FindBy(id="header-details-user-fullname")
+    @FindBy(id = "header-details-user-fullname")
     WebElement header;
 
     private By createIssueButton = By.id("create_link");
 
 
-    public MainPage(WebDriver webDriver) {
-        super(webDriver);
+    public MainPage(WebDriver driver) {
+        super(driver);
     }
 
     public boolean isLoggedIn() {

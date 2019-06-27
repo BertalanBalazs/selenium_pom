@@ -27,7 +27,7 @@ public class GlassDocumentationPage extends BasePage {
         versions.click();
     }
 
-    public List<Boolean> getPermissionList(){
+    public List<Boolean> getPermissionList() {
         List<Boolean> permissionList = new ArrayList<>();
 
         if (driver.findElement(By.xpath("//*[@id=\"glass-permissions-panel\"]/div/table/tbody/tr[6]/td[3]/div")).getAttribute("class").equals("glass-true-icon")) {
@@ -48,7 +48,7 @@ public class GlassDocumentationPage extends BasePage {
         return permissionList;
     }
 
-    public boolean checkNewlyCreatedTestVersion(String versionName){
-        return  driver.findElement(By.xpath("//*[text()='" + versionName + "']")).isDisplayed();
+    public boolean checkNewlyCreatedTestVersion(String versionName) {
+        return driver.findElement(By.xpath("//*[text()='" + versionName + "']")).isDisplayed();
     }
 }

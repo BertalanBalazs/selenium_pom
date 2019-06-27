@@ -12,22 +12,15 @@ public class ProjectPage extends BasePage {
     @FindBy(xpath = "//span[text()='Glass Documentation']")
     WebElement glassDocumentation;
 
-
-
-    public ProjectPage(WebDriver webDriver) {
-        super(webDriver);
+    public ProjectPage(WebDriver driver) {
+        super(driver);
     }
 
-    public void clickOnProjectSetting(){
+    public void clickOnProjectSetting() {
         projectSetting.click();
     }
 
-    public void clickOnGlassDocumentation(){
+    public void clickOnGlassDocumentation() {
         glassDocumentation.click();
     }
-
-
-
-
-
 }

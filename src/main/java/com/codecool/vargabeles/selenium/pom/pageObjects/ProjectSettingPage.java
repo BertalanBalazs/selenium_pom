@@ -17,11 +17,11 @@ public class ProjectSettingPage extends BasePage {
         super(webDriver);
     }
 
-    public void clickOnPermission(){
+    public void clickOnPermission() {
         permission.click();
     }
 
-    public List<Boolean> getPermissionList(){
+    public List<Boolean> getPermissionList() {
         List<Boolean> permissionList = new ArrayList<>();
         if (driver.findElement(By.cssSelector(".permissions-group:nth-child(2) tr:nth-child(4) dd")).getText().equals("Any logged in user")) {
             permissionList.add(true);

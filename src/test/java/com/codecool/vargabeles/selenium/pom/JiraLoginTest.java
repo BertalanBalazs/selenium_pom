@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class JiraLoginTest {
 
@@ -31,7 +32,7 @@ class JiraLoginTest {
 
     @Test
     void testLoginWithValidCredentials() {
-        loginPage.validLogin(System.getenv("username"),System.getenv("password"));
+        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         mainPage = new MainPage(driver);
         assertTrue(mainPage.isLoggedIn());
     }

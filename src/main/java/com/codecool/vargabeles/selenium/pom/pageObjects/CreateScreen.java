@@ -1,6 +1,9 @@
 package com.codecool.vargabeles.selenium.pom.pageObjects;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -11,12 +14,11 @@ public class CreateScreen extends BasePage {
     private By submitButtonLocator = By.id("create-issue-submit");
     private By popUpLinkLocator = By.className("issue-created-key");
 
-
-    public CreateScreen(WebDriver webDriver) {
-        super(webDriver);
+    public CreateScreen(WebDriver driver) {
+        super(driver);
     }
 
-    public void waitUntilCreateScreenIsLoaded() {
+    private void waitUntilCreateScreenIsLoaded() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-submit")));
     }
 
@@ -29,19 +31,13 @@ public class CreateScreen extends BasePage {
         projectDropdown.sendKeys(Keys.RETURN);
     }
 
-    public void waitUntilSummaryIsLoaded() {
+    private void waitUntilSummaryIsLoaded() {
 
-        wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                WebElement summaryField = driver.findElement(summaryFieldLocator);
-                String disabled = summaryField.getAttribute("disabled");
-                if(disabled == null) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
+        wait.until((ExpectedCondition<Boolean>) driver -> {
+            assert driver != null;
+            WebElement summaryField = driver.findElement(summaryFieldLocator);
+            String disabled = summaryField.getAttribute("disabled");
+            return disabled == null;
         });
 
     }
@@ -56,7 +52,7 @@ public class CreateScreen extends BasePage {
         driver.findElement(submitButtonLocator).click();
     }
 
-    public void waitForPopUpLink() {
+    private void waitForPopUpLink() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("issue-created-key")));
     }
 
@@ -64,18 +60,4 @@ public class CreateScreen extends BasePage {
         waitForPopUpLink();
         driver.findElement(popUpLinkLocator).click();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -16,11 +16,11 @@ public class BasePage {
         PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, 10), this);
     }
 
-    public void navigate(String subUrl){
+    public void navigate(String subUrl) {
         driver.navigate().to(System.getenv("baseUrl") + subUrl);
     }
 
-    public void navigate(){
+    public void navigate() {
         driver.navigate().to(System.getenv("baseUrl"));
     }
 }

@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BrowseIssueTest extends BaseTest {
+class BrowseIssueTest extends BaseTest {
 
     private LoginPage loginPage;
     private WebDriver driver;
@@ -47,5 +47,3 @@ public class BrowseIssueTest extends BaseTest {
         assertTrue(issuePage.getPageTitle().contains(issueTitle));
     }
 }
-
-
