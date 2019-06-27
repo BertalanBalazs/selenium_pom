@@ -21,6 +21,7 @@ public class BrowseIssueTest {
     void setUp() {
         System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
     }
 
