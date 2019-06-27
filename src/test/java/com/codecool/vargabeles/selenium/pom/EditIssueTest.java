@@ -30,4 +30,9 @@ class EditIssueTest extends BaseTest {
         issuePage.navigate("/browse/SAND-25");
         issuePage.editIssueType("story-1");
     }
+
+    @Override
+    protected void makePomInstances() {
+
+    }
 }

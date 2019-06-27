@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-class BaseTest {
+abstract class BaseTest {
 
     WebDriver driver;
 
@@ -23,7 +23,7 @@ class BaseTest {
         makePomInstances();
     }
 
-    abstract protected void makePomInstances();
+    protected abstract void makePomInstances();
 
     @AfterEach
     void tearDown() {

@@ -55,4 +55,9 @@ public class CreateIssueTest extends BaseTest {
         issuePage.deleteIssueFromItsPage();
 
     }
+
+    @Override
+    protected void makePomInstances() {
+
+    }
 }

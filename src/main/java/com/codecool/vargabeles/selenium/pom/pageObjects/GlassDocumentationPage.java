@@ -6,9 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GlassDocumentationPage extends BasePage {
     @FindBy(xpath = "//a[text()='Permissions']")
     WebElement permission;
@@ -29,10 +26,8 @@ public class GlassDocumentationPage extends BasePage {
         versions.click();
     }
 
-    public List<Boolean> getPermissionList(){
-        List<Boolean> permissionList = new ArrayList<>();
 
-    public int getNumOfComponentsOfIssue(){
+    public int getNumOfComponentsOfIssue() {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Components ']")));
         int i = 1;
         //investigate the correction
@@ -49,7 +44,7 @@ public class GlassDocumentationPage extends BasePage {
         return Integer.parseInt(null);
     }
 
-    public boolean checkNewlyCreatedTestVersion(String versionName){
-        return  driver.findElement(By.xpath("//*[text()='" + versionName + "']")).isDisplayed();
+    public boolean checkNewlyCreatedTestVersion(String versionName) {
+        return driver.findElement(By.xpath("//*[text()='" + versionName + "']")).isDisplayed();
     }
 }
