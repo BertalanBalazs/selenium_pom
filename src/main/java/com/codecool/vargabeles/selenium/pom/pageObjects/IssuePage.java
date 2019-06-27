@@ -5,12 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.NoSuchElementException;
 
 
 public class IssuePage extends BasePage {
 
-    @FindBy(id="edit-issue") private WebElement editButtonLocator;
+    @FindBy(id="edit-issue") private WebElement editButton;
     @FindBy(id="aui-flag-container") private WebElement updatedPopupLocator;
     @FindBy(id="summary-val") private WebElement summaryField;
     @FindBy(id="type-val") private WebElement issueTypeLocator;
@@ -18,9 +17,10 @@ public class IssuePage extends BasePage {
     @FindBy(xpath="//span[@class='aui-icon aui-icon-small aui-iconfont-success']") private WebElement submitButtonLocator;
 //    @FindBy(xpath="//*[@id=\"issuetype-form\"]/span") private WebElement loadingSubmitLocator;
 
-    private By moreButtonLocator = By.id("opsbar-operations_more");
-    private By deleteIssueButtonLocator = By.cssSelector("aui-item-link[title=\"Delete this issue\"]");
-    private By deleteIssueConfirmButtonLocator = By.id("delete-issue-submit");
+
+    @FindBy(id="opsbar-operations_more") private WebElement moreButton;
+    @FindBy(css="aui-item-link[title=\"Delete this issue\"]") private WebElement deleteIssueButton;
+    @FindBy(id="delete-issue-submit") private WebElement deleteIssueConfirmButton;
 
 
     public IssuePage(WebDriver webDriver) {
@@ -28,7 +28,7 @@ public class IssuePage extends BasePage {
     }
 
     public void clickOnEditButton() {
-        this.editButtonLocator.click();
+        this.editButton.click();
     }
 
     public boolean validateSummaryEdited(String textText) {
@@ -52,19 +52,19 @@ public class IssuePage extends BasePage {
     }
 
     public void clickMoreButton() {
-        driver.findElement(moreButtonLocator).click();
+        moreButton.click();
     }
 
     public void clickDeleteIssueButton() {
-        driver.findElement(deleteIssueButtonLocator).click();
+        deleteIssueButton.click();
     }
 
     public void waitForDeleteIssueConfirmButton(){
-            wait.until(ExpectedConditions.visibilityOfElementLocated(deleteIssueConfirmButtonLocator));
+        wait.until(ExpectedConditions.visibilityOf(deleteIssueConfirmButton));
     }
 
     public void clickdeleteIssueConfirmButton() {
-        driver.findElement(deleteIssueConfirmButtonLocator).click();
+        deleteIssueConfirmButton.click();
     }
 
     public void deleteIssueFromItsPage() {

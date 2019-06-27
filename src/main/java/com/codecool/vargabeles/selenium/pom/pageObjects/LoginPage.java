@@ -38,7 +38,7 @@ public class LoginPage extends BasePage{
         this.password.sendKeys(password);
         this.clickLogin();
         MainPage mainPage = new MainPage(driver);
-        wait.until(ExpectedConditions.visibilityOf(mainPage.header));
+        wait.until(ExpectedConditions.visibilityOf(mainPage.getHeader()));
     }
 
     public String invalidLogin(String username, String password){

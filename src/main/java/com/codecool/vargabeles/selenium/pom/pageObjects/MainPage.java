@@ -9,13 +9,18 @@ import org.openqa.selenium.support.FindBy;
 public class MainPage extends BasePage{
 
     @FindBy(id="header-details-user-fullname")
-    WebElement header;
+    private WebElement header;
 
-    private By createIssueButton = By.id("create_link");
+    @FindBy(id="create_link")
+    private WebElement createIssueButton;
 
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public WebElement getHeader() {
+        return header;
     }
 
     public boolean isLoggedIn() {
@@ -28,6 +33,6 @@ public class MainPage extends BasePage{
     }
 
     public void clickCreateIssueButton() {
-        driver.findElement(createIssueButton).click();
+        createIssueButton.click();
     }
 }
