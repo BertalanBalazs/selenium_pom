@@ -63,6 +63,10 @@ public class IssuePage extends BasePage {
             wait.until(ExpectedConditions.visibilityOfElementLocated(deleteIssueConfirmButtonLocator));
     }
 
+    public String getPageTitle() {
+        return driver.getTitle();
+    }
+
     public void clickdeleteIssueConfirmButton() {
         driver.findElement(deleteIssueConfirmButtonLocator).click();
     }

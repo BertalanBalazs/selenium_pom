@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class BaseTest {
+class BaseTest {
 
     WebDriver driver;
 
@@ -19,7 +19,7 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         LoginPage login = new LoginPage(driver);
-        login.login(System.getenv("username"), System.getenv("password"));
+        login.validLogin(System.getenv("username"), System.getenv("password"));
     }
 
     @AfterEach

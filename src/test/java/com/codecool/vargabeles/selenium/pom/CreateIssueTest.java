@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class CreateIssueTest extends BaseTest {
 
-
-
     @Test
     void createIssueTest() throws InterruptedException {
 
