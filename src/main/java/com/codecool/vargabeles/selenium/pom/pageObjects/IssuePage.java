@@ -45,6 +45,7 @@ public class IssuePage extends BasePage {
     private By deleteIssueButtonLocator = By.cssSelector("aui-item-link[title=\"Delete this issue\"]");
     private By deleteIssueConfirmButtonLocator = By.id("delete-issue-submit");
 
+
     public IssuePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -84,7 +85,7 @@ public class IssuePage extends BasePage {
 
     public boolean validateSummaryEdited(String textText) {
         wait.until(ExpectedConditions.visibilityOf(updatedPopupLocator));
-        return this.summaryField.getText().equals(textText);
+        return summaryField.getText().equals(textText);
     }
 
     public void editIssueType(String issueType) {
@@ -134,6 +135,6 @@ public class IssuePage extends BasePage {
     }
 
     public boolean isIssueTypeCorrect(String issueType) {
-        return issueTypeLocator.getText().equals(issueType);
+        return this.issueTypeLocator.getText().equals(issueType);
     }
 }
