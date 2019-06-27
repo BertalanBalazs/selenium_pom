@@ -35,14 +35,12 @@ public class GlassDocumentationPermissionPage extends BasePage {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
-                if(i != 0){
+                if (i != 0) {
                     String[] values = line.split(",");
-                    records[i-1] = values;
+                    records[i - 1] = values;
                 }
                 i++;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

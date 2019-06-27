@@ -11,8 +11,6 @@ public class CreateScreen extends BasePage {
     private By submitButtonLocator = By.id("create-issue-submit");
     private By popUpLinkLocator = By.className("issue-created-key");
 
-    public CreateScreen(WebDriver driver) {
-        super(driver);
     private By issueTypeDropdownLocator = By.id("issuetype-field");
 
 
@@ -20,9 +18,6 @@ public class CreateScreen extends BasePage {
         super(webDriver);
     }
 
-    private void waitUntilCreateScreenIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-submit")));
-    }
 //    public void waitUntilCreateScreenIsLoaded() {
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-submit")));
 //    }
@@ -42,7 +37,7 @@ public class CreateScreen extends BasePage {
 //        waitUntilCreateScreenIsLoaded();
         waitUntilFieldsAreLoaded();
 
-        WebElement issueTypeDropdown = driver. findElement(issueTypeDropdownLocator);
+        WebElement issueTypeDropdown = driver.findElement(issueTypeDropdownLocator);
 
         issueTypeDropdown.click();
         issueTypeDropdown.sendKeys(issueType);
@@ -51,11 +46,16 @@ public class CreateScreen extends BasePage {
 
     public void waitUntilFieldsAreLoaded() {
 
-        wait.until((ExpectedCondition<Boolean>) driver -> {
-            assert driver != null;
-            WebElement summaryField = driver.findElement(summaryFieldLocator);
-            String disabled = summaryField.getAttribute("disabled");
-            return disabled == null;
+        wait.until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                WebElement summaryField = driver.findElement(summaryFieldLocator);
+                String disabled = summaryField.getAttribute("disabled");
+                if (disabled == null) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         });
 
     }
@@ -70,7 +70,7 @@ public class CreateScreen extends BasePage {
         driver.findElement(submitButtonLocator).click();
     }
 
-    private void waitForPopUpLink() {
+    public void waitForPopUpLink() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("issue-created-key")));
     }
 

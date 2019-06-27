@@ -6,7 +6,6 @@ import com.codecool.vargabeles.selenium.pom.pageObjects.IssuePage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectPage;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 class JiraComponentsWithGlassTest extends BaseTest {
     ProjectPage projectPage;
@@ -37,5 +36,4 @@ class JiraComponentsWithGlassTest extends BaseTest {
         projectPage.clickOnComponents();
         componentsPage.deleteComponent("testing");
     }
-
 }

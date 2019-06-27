@@ -8,9 +8,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EditIssuePage extends BasePage {
 
-    @FindBy(id="edit-issue-dialog") private WebElement editPageLocator;
-    @FindBy(id="summary") private WebElement summaryFieldLocator;
-    @FindBy(id="edit-issue-submit") private WebElement submitButtonLocator;
+    @FindBy(id = "edit-issue-dialog")
+    private WebElement editPageLocator;
+    @FindBy(id = "summary")
+    private WebElement summaryFieldLocator;
+    @FindBy(id = "edit-issue-submit")
+    private WebElement submitButtonLocator;
 
 
     public EditIssuePage(WebDriver webDriver) {

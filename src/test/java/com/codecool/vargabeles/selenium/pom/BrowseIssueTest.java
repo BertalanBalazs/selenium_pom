@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BrowseIssueTest{
+public class BrowseIssueTest {
 
     private LoginPage loginPage;
     private WebDriver driver;

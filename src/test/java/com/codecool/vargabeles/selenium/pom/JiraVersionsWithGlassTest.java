@@ -82,4 +82,9 @@ class JiraVersionsWithGlassTest extends BaseTest {
         releasesPage.navigate("/projects/PP3?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page");
         releasesPage.deleteVersion(randomVersionNameToTheTest);
     }
+
+    @Override
+    protected void makePomInstances() {
+
+    }
 }

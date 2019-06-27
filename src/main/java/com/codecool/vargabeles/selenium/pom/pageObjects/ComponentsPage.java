@@ -27,22 +27,22 @@ public class ComponentsPage extends BasePage {
         super(webDriver);
     }
 
-    public void sendKeyToNameInput(String text) {
+    private void sendKeyToNameInput(String text) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//input[@name='name']")));
         nameInput.sendKeys(text);
     }
 
-    public void sendKeyToAssigneeInput(String text) {
+    private void sendKeyToAssigneeInput(String text) {
         assigneeInput.sendKeys(text);
     }
 
-    public void clickToComponentFilter() {
+    private void clickToComponentFilter() {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"component-filter\"]")));
         componentFilter.click();
     }
 
 
-    public void clickToAddButton() {
+    private void clickToAddButton() {
         addButton.click();
     }
 
@@ -50,29 +50,29 @@ public class ComponentsPage extends BasePage {
         issuesLink.click();
     }
 
-    public void clickToDeleteSubmitButton() {
+    private void clickToDeleteSubmitButton() {
         deleteSubmitButton.click();
     }
 
-    public void clickToElementAction() {
+    private void clickToElementAction() {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//tr[2]/td[@class='components-table__name' and 1]")));
         driver.findElement(By.cssSelector("#components-table > tbody.items > tr:nth-child(1) > td.dynamic-table__actions > div > a > span")).click();
     }
 
-    public int getDataComponentId() {
+    private int getDataComponentId() {
         return Integer.parseInt(driver.findElement(By.cssSelector("#components-table > tbody.items > tr:nth-child(1)")).getAttribute("data-component-id"));
     }
 
-    public void clickToDeleteComponent(int id) {
+    private void clickToDeleteComponent(int id) {
         driver.findElement(By.xpath("//*[@id=\"deletecomponent_" + id + "\"]")).click();
     }
 
-    public void clickToRemoveComponentRadioButton(int id) {
+    private void clickToRemoveComponentRadioButton(int id) {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"component-" + id + "-delete-dialog\"]/div[2]/div/form/div[1]/fieldset/div[2]/label")));
         driver.findElement(By.xpath("//*[@id=\"component-" + id + "-delete-dialog\"]/div[2]/div/form/div[1]/fieldset/div[2]/label")).click();
     }
 
-    public void sendKeyToComponentFilterInput(String componentName){
+    private void sendKeyToComponentFilterInput(String componentName) {
         componentFilterInput.sendKeys(componentName);
     }
 
@@ -102,5 +102,3 @@ public class ComponentsPage extends BasePage {
         }
     }
 }
-
-

@@ -17,6 +17,7 @@ public class GlassDocumentationPage extends BasePage {
         super(webDriver);
     }
 
+
     public void clickOnPermission() {
         permission.click();
     }
@@ -25,8 +26,6 @@ public class GlassDocumentationPage extends BasePage {
         versions.click();
     }
 
-    public List<Boolean> getPermissionList() {
-        List<Boolean> permissionList = new ArrayList<>();
 
     public int getNumOfComponentsOfIssue() {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Components ']")));
