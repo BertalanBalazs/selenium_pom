@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class JiraLoginTest {
+class LoginTest {
 
     private LoginPage loginPage;
     private MainPage mainPage;
