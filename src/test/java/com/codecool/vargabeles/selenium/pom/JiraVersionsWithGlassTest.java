@@ -32,4 +32,9 @@ class JiraVersionsWithGlassTest extends BaseTest{
         //TODO
         assertTrue(true);
     }
+
+    @Override
+    protected void makePomInstances() {
+
+    }
 }
