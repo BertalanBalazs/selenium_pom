@@ -82,8 +82,4 @@ class EditIssueTest {
         issuePage.editIssueType("story-1");
     }
 
-    @Override
-    protected void makePomInstances() {
-
-    }
 }
