@@ -11,17 +11,21 @@ public class CreateScreen extends BasePage {
     private By submitButtonLocator = By.id("create-issue-submit");
     private By popUpLinkLocator = By.className("issue-created-key");
 
+    private By issueTypeDropdownLocator = By.id("issuetype-field");
+
 
     public CreateScreen(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void waitUntilCreateScreenIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-submit")));
-    }
+//    public void waitUntilCreateScreenIsLoaded() {
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-submit")));
+//    }
 
     public void chooseProject(String projectName) {
-        waitUntilCreateScreenIsLoaded();
+//        waitUntilCreateScreenIsLoaded();
+        waitUntilFieldsAreLoaded();
+
         WebElement projectDropdown = driver.findElement(projectDropdownLocator);
 
         projectDropdown.click();
@@ -29,7 +33,18 @@ public class CreateScreen extends BasePage {
         projectDropdown.sendKeys(Keys.RETURN);
     }
 
-    public void waitUntilSummaryIsLoaded() {
+    public void chooseIssueType(String issueType) {
+//        waitUntilCreateScreenIsLoaded();
+        waitUntilFieldsAreLoaded();
+
+        WebElement issueTypeDropdown = driver. findElement(issueTypeDropdownLocator);
+
+        issueTypeDropdown.click();
+        issueTypeDropdown.sendKeys(issueType);
+        issueTypeDropdown.sendKeys(Keys.RETURN);
+    }
+
+    public void waitUntilFieldsAreLoaded() {
 
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
@@ -47,7 +62,7 @@ public class CreateScreen extends BasePage {
     }
 
     public void fillSummary(String summaryText) {
-        waitUntilSummaryIsLoaded();
+        waitUntilFieldsAreLoaded();
         driver.findElement(summaryFieldLocator).click();
         driver.findElement(summaryFieldLocator).sendKeys(summaryText);
     }
