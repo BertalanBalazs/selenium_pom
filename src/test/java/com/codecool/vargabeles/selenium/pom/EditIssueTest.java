@@ -35,6 +35,7 @@ class EditIssueTest {
         IssuePage issuePage = new IssuePage(driver);
         EditIssuePage editIssuePage = new EditIssuePage(driver);
 
+        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         issuePage.navigate("/browse/SAND-1");
         issuePage.clickOnEditButton();
         editIssuePage.editSummaryField("Test Story");
@@ -62,6 +63,7 @@ class EditIssueTest {
     void testEditIssueOnTheIssuePage() {
         IssuePage issuePage = new IssuePage(driver);
 
+        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         issuePage.navigate("/browse/SAND-25");
         issuePage.editIssueType("task-1");
         Assert.assertTrue(issuePage.validateIssueTypeEdited("Task"));
@@ -69,17 +71,17 @@ class EditIssueTest {
         issuePage.editIssueType("story-1");
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/issueTitles.csv", numLinesToSkip = 1)
-    void testEditIssueOnTheIssuePageFromCsvFile(String username, String issueTitle) {
-        IssuePage issuePage = new IssuePage(driver);
-
-        loginPage.validLogin(username, System.getenv("password"));
-        issuePage.navigate("/browse/" + issueTitle);
-        issuePage.editIssueType("task-1");
-        Assert.assertTrue(issuePage.validateIssueTypeEdited("Task"));
-        issuePage.navigate("/browse/" + issueTitle);
-        issuePage.editIssueType("story-1");
-    }
+//    @ParameterizedTest
+//    @CsvFileSource(resources = "/issueTitles.csv", numLinesToSkip = 1)
+//    void testEditIssueOnTheIssuePageFromCsvFile(String username, String issueTitle) {
+//        IssuePage issuePage = new IssuePage(driver);
+//
+//        loginPage.validLogin(username, System.getenv("password"));
+//        issuePage.navigate("/browse/" + issueTitle);
+//        issuePage.editIssueType("task-1");
+//        Assert.assertTrue(issuePage.validateIssueTypeEdited("Task"));
+//        issuePage.navigate("/browse/" + issueTitle);
+//        issuePage.editIssueType("story-1");
+//    }
 
 }
