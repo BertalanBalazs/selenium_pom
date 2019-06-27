@@ -13,7 +13,7 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, 10);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public void navigate(String subUrl){
