@@ -5,13 +5,19 @@ import com.codecool.vargabeles.selenium.pom.pageObjects.GlassDocumentationPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.IssuePage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectPage;
 import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+import java.util.UUID;
+
 class JiraComponentsWithGlassTest extends BaseTest {
-    ProjectPage projectPage;
-    ComponentsPage componentsPage;
-    IssuePage issuePage;
-    GlassDocumentationPage glassDocumentationPage;
+    private ProjectPage projectPage;
+    private ComponentsPage componentsPage;
+    private IssuePage issuePage;
+    private GlassDocumentationPage glassDocumentationPage;
+    private int projectId = new Random().nextInt(3) + 1;
+    private String uniqueId = UUID.randomUUID().toString();
 
     @Override
     protected void makePomInstances() {
@@ -22,18 +28,19 @@ class JiraComponentsWithGlassTest extends BaseTest {
     }
 
     @Test
-    void categorizeIssues() {
-        projectPage.navigate("/projects/PP1?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page");
-        componentsPage.deleteComponent("testing");
-        componentsPage.makeNewComponent("testing", "Project lead (Administrator)");
+    void connectComponentToIssue() {
+        projectPage.navigate("/projects/PP"+ projectId +"?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page");
+        componentsPage.makeNewComponent(uniqueId, "Project lead (Administrator)");
         componentsPage.clickToIssuesLink();
-        issuePage.addComponentToIssue("testing");
-        issuePage.navigate("/projects/PP1?selectedItem=com.codecanvas.glass:glass");
+        issuePage.addComponentToIssue(uniqueId);
+        issuePage.navigate("/projects/PP"+ projectId +"?selectedItem=com.codecanvas.glass:glass");
 
         int result = glassDocumentationPage.getNumOfComponentsOfIssue();
         Assert.assertEquals(result, 1);
+    }
 
-        projectPage.clickOnComponents();
-        componentsPage.deleteComponent("testing");
+    @AfterEach
+    void deleteComponent(){
+        componentsPage.deleteComponent(uniqueId, projectId);
     }
 }

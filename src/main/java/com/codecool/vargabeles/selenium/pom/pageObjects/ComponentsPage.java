@@ -88,17 +88,15 @@ public class ComponentsPage extends BasePage {
         clickToAddButton();
     }
 
-    public void deleteComponent(String componentName) {
-        try {
-            sendKeyToComponentFilterInput(componentName);
-            clickToElementAction();
-            getDataComponentId();
-            int id = getDataComponentId();
-            clickToDeleteComponent(id);
-            clickToRemoveComponentRadioButton(id);
-            clickToDeleteSubmitButton();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void deleteComponent(String componentName, int projectId) {
+        navigate("/projects/PP" + projectId + "?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page");
+        sendKeyToComponentFilterInput(componentName);
+        clickToElementAction();
+        getDataComponentId();
+        int id = getDataComponentId();
+        clickToDeleteComponent(id);
+        clickToRemoveComponentRadioButton(id);
+        clickToDeleteSubmitButton();
+
     }
 }

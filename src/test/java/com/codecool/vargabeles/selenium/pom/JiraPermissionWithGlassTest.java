@@ -11,10 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class JiraPermissionWithGlassTest extends BaseTest {
 
-    ProjectPage projectPage;
-    ProjectSettingPage projectSettingPage;
-    GlassDocumentationPermissionPage glassDocumentationPermissionPage;
-    GlassDocumentationPage glassDocumentationPage;
+    private ProjectPage projectPage;
+    private GlassDocumentationPermissionPage glassDocumentationPermissionPage;
+    private GlassDocumentationPage glassDocumentationPage;
 
     @BeforeEach
     void setup() {
@@ -24,7 +23,6 @@ class JiraPermissionWithGlassTest extends BaseTest {
     @Override
     protected void makePomInstances() {
         projectPage = new ProjectPage(driver);
-        projectSettingPage = new ProjectSettingPage(driver);
         glassDocumentationPermissionPage = new GlassDocumentationPermissionPage(driver);
         glassDocumentationPage = new GlassDocumentationPage(driver);
     }
@@ -35,7 +33,7 @@ class JiraPermissionWithGlassTest extends BaseTest {
         String[][] dataFromCsv = glassDocumentationPermissionPage.readPermissionDataFromCsv();
         projectPage.navigate("/projects/PERMTEST?selectedItem=com.codecanvas.glass:glass");
         glassDocumentationPage.clickOnPermission();
-        String[][] checkPermissionWithGlassList = glassDocumentationPermissionPage.getPermissionList();
+        String[][] checkPermissionWithGlassList = glassDocumentationPermissionPage.getPermissionList(12);
         assertArrayEquals(dataFromCsv, checkPermissionWithGlassList);
     }
 }

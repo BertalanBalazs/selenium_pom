@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -13,10 +12,10 @@ public class GlassDocumentationPermissionPage extends BasePage {
         super(webDriver);
     }
 
-    public String[][] getPermissionList() {
-        String[][] permissionList = new String[34][12];
+    public String[][] getPermissionList(int numOfColumn) {
+        String[][] permissionList = new String[34][numOfColumn];
         for (int row = 1; row < 35; row++) {
-            for (int column = 2; column < 14; column++) {
+            for (int column = 2; column < numOfColumn+2 ; column++) {
                 try {
                     driver.findElement(By.xpath("//*[@id=\"glass-permissions-panel\"]/div/table/tbody/tr[" + row + "]/td[" + column + "]/div"));
                     permissionList[row - 1][column - 2] = "true";
@@ -25,7 +24,6 @@ public class GlassDocumentationPermissionPage extends BasePage {
                 }
             }
         }
-
         return permissionList;
     }
 
