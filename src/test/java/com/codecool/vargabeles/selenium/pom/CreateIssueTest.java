@@ -4,8 +4,9 @@ import com.codecool.vargabeles.selenium.pom.pageObjects.BasePage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.CreateScreen;
 import com.codecool.vargabeles.selenium.pom.pageObjects.IssuePage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.MainPage;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CreateIssueTest extends BaseTest {
 
@@ -49,7 +50,7 @@ class CreateIssueTest extends BaseTest {
 
         createScreen.clickPopUpLink();
 
-        Assertions.assertTrue(issuePage.isIssueTypeCorrect(issueType));
+        assertTrue(issuePage.isIssueTypeCorrect(issueType));
 
         issuePage.deleteIssueFromItsPage();
 
