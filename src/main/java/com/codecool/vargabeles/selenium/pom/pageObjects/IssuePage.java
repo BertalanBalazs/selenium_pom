@@ -8,18 +8,33 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IssuePage extends BasePage {
 
-    @FindBy(id="edit-issue") private WebElement editButton;
-    @FindBy(id="aui-flag-container") private WebElement updatedPopupLocator;
-    @FindBy(id="summary-val") private WebElement summaryField;
-    @FindBy(id="type-val") private WebElement issueTypeLocator;
-    @FindBy(id="issuetype-single-select") private WebElement issueTypeSelectLocator;
-    @FindBy(xpath="//span[@class='aui-icon aui-icon-small aui-iconfont-success']") private WebElement submitButtonLocator;
+    @FindBy(id="edit-issue")
+    private WebElement editButton;
+
+    @FindBy(id="aui-flag-container")
+    private WebElement updatedPopupLocator;
+
+    @FindBy(id="summary-val")
+    private WebElement summaryField;
+
+    @FindBy(id="type-val")
+    private WebElement issueTypeLocator;
+
+    @FindBy(id="issuetype-single-select")
+    private WebElement issueTypeSelectLocator;
+
+    @FindBy(xpath="//span[@class='aui-icon aui-icon-small aui-iconfont-success']")
+    private WebElement submitButtonLocator;
 //    @FindBy(xpath="//*[@id=\"issuetype-form\"]/span") private WebElement loadingSubmitLocator;
 
+    @FindBy(id="opsbar-operations_more")
+    private WebElement moreButton;
 
-    @FindBy(id="opsbar-operations_more") private WebElement moreButton;
-    @FindBy(css="aui-item-link[title=\"Delete this issue\"]") private WebElement deleteIssueButton;
-    @FindBy(id="delete-issue-submit") private WebElement deleteIssueConfirmButton;
+    @FindBy(css="aui-item-link[title=\"Delete this issue\"]")
+    private WebElement deleteIssueButton;
+
+    @FindBy(id="delete-issue-submit")
+    private WebElement deleteIssueConfirmButton;
 
     @FindBy(id = "edit-issue-submit")
     private WebElement editSubmitButton;
@@ -61,6 +76,9 @@ public class IssuePage extends BasePage {
         glassDocumentation.click();
     }
 
+    public String getSummaryText() {
+        return summaryField.getText();
+    }
 
     public void addComponentToIssue(String component) {
         clickToEditButton();
@@ -117,6 +135,9 @@ public class IssuePage extends BasePage {
         deleteIssueConfirmButton.click();
     }
 
+    public void waitUntilSummaryIsLoaded() {
+        wait.until(ExpectedConditions.visibilityOf(summaryField));
+    }
     public void deleteIssueFromItsPage() {
         clickMoreButton();
         clickDeleteIssueButton();

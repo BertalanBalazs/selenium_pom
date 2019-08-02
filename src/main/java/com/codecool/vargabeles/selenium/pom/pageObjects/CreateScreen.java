@@ -5,13 +5,27 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
 public class CreateScreen extends BasePage {
 
-    @FindBy(id="project-field") private WebElement projectDropdown;
-    @FindBy(id="summary") private WebElement summaryField;
-    @FindBy(id="create-issue-submit") private WebElement submitButton;
-    @FindBy(className="issue-created-key") private WebElement popUpLink;
-    @FindBy(id="issuetype-field") private WebElement issueTypeDropdown;
+    @FindBy(id="project-field")
+    private WebElement projectDropdown;
+
+    @FindBy(id="summary")
+    private WebElement summaryField;
+
+    @FindBy(id="create-issue-submit")
+    private WebElement submitButton;
+
+    @FindBy(className="issue-created-key")
+    private WebElement popUpLink;
+
+    @FindBy(id="issuetype-field")
+    private WebElement issueTypeDropdown;
+
+    @FindBy(className="no-suggestions")
+    private List<WebElement> dropdownNoSuggestionList;
 
 
     public CreateScreen(WebDriver webDriver) {
@@ -64,7 +78,33 @@ public class CreateScreen extends BasePage {
     }
 
     public void clickPopUpLink() {
+        IssuePage issuePage = new IssuePage(driver);
+
         waitForPopUpLink();
         popUpLink.click();
+
+        issuePage.waitUntilSummaryIsLoaded();
+    }
+
+    public boolean isProjectNameValid() {
+        waitUntilFieldsAreLoaded();
+        if (dropdownNoSuggestionList.size() > 0) {
+            issueTypeDropdown.clear();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean isIssueTypeValid() {
+        waitUntilFieldsAreLoaded();
+        if (dropdownNoSuggestionList.size() > 0) {
+            issueTypeDropdown.clear();
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
