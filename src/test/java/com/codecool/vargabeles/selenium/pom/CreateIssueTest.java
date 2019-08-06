@@ -12,20 +12,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CreateIssueTest{
+class CreateIssueTest extends BaseTest{
 
-    WebDriver driver;
-
-    @BeforeEach
-    void setUp() {
-        System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
-
-    @AfterEach
-    void tearDown() {
-        driver.close();
+    @Override
+    protected void makePomInstances() {
     }
 
     @Test
@@ -38,7 +28,6 @@ class CreateIssueTest{
 
         String summaryText = "Test summary for create general issue";
 
-        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         basePage.navigate();
         mainPage.clickCreateIssueButton();
 
@@ -62,7 +51,6 @@ class CreateIssueTest{
 
         String issueType = "Task";
 
-        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         basePage.navigate();
         mainPage.clickCreateIssueButton();
 
@@ -89,7 +77,6 @@ class CreateIssueTest{
         MainPage mainPage = new MainPage(driver);
         CreateScreen createScreen = new CreateScreen(driver);
 
-        loginPage.validLogin(username, System.getenv("password"));
         basePage.navigate();
         mainPage.clickCreateIssueButton();
 

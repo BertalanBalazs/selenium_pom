@@ -12,27 +12,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BrowseIssueTest {
+public class BrowseIssueTest extends BaseTest{
 
-    private LoginPage loginPage;
-    private WebDriver driver;
+    @Override
+    protected void makePomInstances() {
 
-    @BeforeEach
-    void setUp() {
-        System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);
-    }
-
-    @AfterEach
-    void tearDown() {
-        driver.close();
     }
 
     @Test
     void createdIssueExists() {
-        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         IssuePage issuePage = new IssuePage(driver);
         issuePage.navigate("/browse/SAND-40");
         assertTrue(issuePage.getCurrentPageTitle().contains("SAND-40"));
@@ -42,9 +30,8 @@ public class BrowseIssueTest {
     @CsvFileSource(resources = "/issueTitles.csv", numLinesToSkip = 1)
     void everyProjectHasThreeIssuesAndIndexedProperly(String username, String issueTitle) {
         IssuePage issuePage = new IssuePage(driver);
-        loginPage.validLogin(username, System.getenv("password"));
-        issuePage.navigate("/browse/" + issueTitle);
 
+        issuePage.navigate("/browse/" + issueTitle);
         assertTrue(issuePage.getCurrentPageTitle().contains(issueTitle));
     }
 }

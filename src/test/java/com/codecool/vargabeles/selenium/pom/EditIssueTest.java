@@ -12,30 +12,18 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-class EditIssueTest {
+class EditIssueTest extends BaseTest {
 
-    private WebDriver driver;
-    private LoginPage loginPage;
-
-    @BeforeEach
-    void setUp() {
-        System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        loginPage = new LoginPage(driver);
+    @Override
+    protected void makePomInstances() {
     }
 
-    @AfterEach
-    void tearDown() {
-        driver.close();
-    }
 
     @Test
     void testEditIssueWithButtonEdit() {
         IssuePage issuePage = new IssuePage(driver);
         EditIssuePage editIssuePage = new EditIssuePage(driver);
 
-        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         issuePage.navigate("/browse/SAND-1");
         issuePage.clickOnEditButton();
         editIssuePage.editSummaryField("Test Story");
@@ -50,7 +38,6 @@ class EditIssueTest {
         IssuePage issuePage = new IssuePage(driver);
         EditIssuePage editIssuePage = new EditIssuePage(driver);
 
-        loginPage.validLogin(username, System.getenv("password"));
         issuePage.navigate("/browse/" + issueTitle);
         issuePage.clickOnEditButton();
         editIssuePage.editSummaryField("Test Story");
@@ -63,7 +50,6 @@ class EditIssueTest {
     void testEditIssueOnTheIssuePage() {
         IssuePage issuePage = new IssuePage(driver);
 
-        loginPage.validLogin(System.getenv("username"), System.getenv("password"));
         issuePage.navigate("/browse/SAND-25");
         issuePage.editIssueType("task-1");
         Assert.assertTrue(issuePage.validateIssueTypeEdited("Task"));
