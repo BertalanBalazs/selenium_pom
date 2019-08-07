@@ -33,6 +33,6 @@ abstract class BaseTest {
 
     @AfterEach
     void tearDown() {
-        driver.close();
+        driver.quit();
     }
 }
