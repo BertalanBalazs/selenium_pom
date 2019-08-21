@@ -20,7 +20,7 @@ abstract class BaseTest {
     //The chromedriver and the Selenium Standalone driver have to be in the same folder!
     @BeforeEach
     void setUp() throws MalformedURLException {
-        nodeUrl = "https://jenkins.codecool.codecanvas.hu:4444/wd/hub";
+        nodeUrl = "https://localhost:4444/wd/hub";
         FirefoxOptions capability = new FirefoxOptions();
         driver = new RemoteWebDriver(new URL(nodeUrl), capability);
         LoginPage login = new LoginPage(driver);
