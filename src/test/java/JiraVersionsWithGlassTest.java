@@ -1,5 +1,3 @@
-package com.codecool.vargabeles.selenium.pom;
-
 import com.codecool.vargabeles.selenium.pom.pageObjects.*;
 import org.junit.jupiter.api.Test;
 

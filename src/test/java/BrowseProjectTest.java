@@ -1,5 +1,3 @@
-package com.codecool.vargabeles.selenium.pom;
-
 import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectPage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;

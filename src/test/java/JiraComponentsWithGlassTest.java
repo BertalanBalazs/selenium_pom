@@ -1,5 +1,3 @@
-package com.codecool.vargabeles.selenium.pom;
-
 import com.codecool.vargabeles.selenium.pom.pageObjects.ComponentsPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.GlassDocumentationPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.IssuePage;
