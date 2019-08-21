@@ -16,11 +16,11 @@ public class BasePage {
     }
 
     public void navigate(String subUrl) {
-        driver.navigate().to(System.getenv("baseUrl") + subUrl);
+        driver.navigate().to("https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa" + subUrl);
     }
 
     public void navigate() {
-        driver.navigate().to(System.getenv("baseUrl"));
+        driver.navigate().to("https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa");
     }
 
     public String getCurrentPageTitle() {

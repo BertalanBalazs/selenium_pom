@@ -4,9 +4,7 @@ import com.codecool.vargabeles.selenium.pom.pageObjects.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -21,12 +19,12 @@ abstract class BaseTest {
     //The chromedriver and the Selenium Standalone driver have to be in the same folder!
     @BeforeEach
     void setUp() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
-        nodeUrl = System.getenv("nodeUrl");
+        System.setProperty("webdriver.chrome.driver", "/home/bertalan/Desktop/codecool/downloads/chrome/chromedriver");
+        nodeUrl = "http://localhost:4444/wd/hub";
         ChromeOptions capability = new ChromeOptions();
         driver = new RemoteWebDriver(new URL(nodeUrl), capability);
         LoginPage login = new LoginPage(driver);
-        login.validLogin(System.getenv("username"), System.getenv("password"));
+        login.validLogin("user1", "CoolCanvas19.");
         makePomInstances();
     }
 

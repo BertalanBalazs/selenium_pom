@@ -3,7 +3,6 @@ package com.codecool.vargabeles.selenium.pom;
 import com.codecool.vargabeles.selenium.pom.pageObjects.GlassDocumentationPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.GlassDocumentationPermissionPage;
 import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectPage;
-import com.codecool.vargabeles.selenium.pom.pageObjects.ProjectSettingPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
