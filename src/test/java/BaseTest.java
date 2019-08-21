@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -19,12 +20,11 @@ abstract class BaseTest {
     //The chromedriver and the Selenium Standalone driver have to be in the same folder!
     @BeforeEach
     void setUp() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
-        nodeUrl = System.getenv("nodeUrl");
-        ChromeOptions capability = new ChromeOptions();
+        nodeUrl = "https://jenkins.codecool.codecanvas.hu:4444/wd/hub";
+        FirefoxOptions capability = new FirefoxOptions();
         driver = new RemoteWebDriver(new URL(nodeUrl), capability);
         LoginPage login = new LoginPage(driver);
-        login.validLogin(System.getenv("username"), System.getenv("password"));
+        login.validLogin(System.getProperty("username"), System.getProperty("password"));
         makePomInstances();
     }
 
