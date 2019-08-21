@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -22,7 +23,7 @@ abstract class BaseTest {
     void setUp() throws MalformedURLException {
         System.setProperty("webdriver.chrome.driver", System.getenv("webdriverPath"));
         nodeUrl = System.getenv("nodeUrl");
-        DesiredCapabilities capability = DesiredCapabilities.chrome();
+        ChromeOptions capability = new ChromeOptions();
         driver = new RemoteWebDriver(new URL(nodeUrl), capability);
         LoginPage login = new LoginPage(driver);
         login.validLogin(System.getenv("username"), System.getenv("password"));
