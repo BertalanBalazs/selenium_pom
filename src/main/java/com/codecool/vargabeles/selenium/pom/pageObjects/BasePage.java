@@ -16,11 +16,11 @@ public class BasePage {
     }
 
     public void navigate(String subUrl) {
-        driver.navigate().to(System.getenv("baseUrl") + subUrl);
+        driver.navigate().to(System.getProperty("baseUrl") + subUrl);
     }
 
     public void navigate() {
-        driver.navigate().to(System.getenv("baseUrl"));
+        driver.navigate().to(System.getProperty("baseUrl"));
     }
 
     public String getCurrentPageTitle() {
