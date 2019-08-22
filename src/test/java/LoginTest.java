@@ -28,6 +28,7 @@ class LoginTest {
         loginPage = new LoginPage(driver);
     }
 
+
     @AfterEach
     void tearDown() {
         driver.quit();
