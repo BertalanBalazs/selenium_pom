@@ -23,10 +23,6 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    private void jenkinsTriggerTest(){
-        // This method is only here to mimic a codechange
-    }
-
     private void clickLogin() {
         login.click();
     }
