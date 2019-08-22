@@ -40,6 +40,7 @@ public class LoginPage extends BasePage {
 
     public String invalidLogin(String username, String password) {
         navigate();
+        //TODO remove todo
         wait.until(ExpectedConditions.visibilityOf(this.userName));
         wait.until(ExpectedConditions.visibilityOf(this.password));
         this.userName.sendKeys(username);
