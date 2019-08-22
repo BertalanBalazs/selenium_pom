@@ -11,9 +11,4 @@ public class LogoutTest extends BaseTest {
         mainPage.logout();
         assertFalse(mainPage.isLoggedIn());
     }
-
-    @Override
-    protected void makePomInstances() {
-
-    }
 }
