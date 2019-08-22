@@ -40,7 +40,7 @@ public class LoginPage extends BasePage {
 
     public String invalidLogin(String username, String password) {
         navigate();
-        //TODO CHANGE THIS TO TEST PUSH TRIGGER 000312
+        //TODO CHANGE THIS TO TEST PUSH TRIGGER 0
         wait.until(ExpectedConditions.visibilityOf(this.userName));
         wait.until(ExpectedConditions.visibilityOf(this.password));
         this.userName.sendKeys(username);
