@@ -26,8 +26,6 @@ class LoginTest {
         FirefoxOptions capability = new FirefoxOptions();
         driver = new RemoteWebDriver(new URL(nodeUrl), capability);
         loginPage = new LoginPage(driver);
-
-
     }
 
 
