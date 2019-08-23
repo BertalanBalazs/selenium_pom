@@ -16,10 +16,6 @@ abstract class BaseTest {
     WebDriver driver;
     String nodeUrl;
 
-    public void testMethodForJenkinsTrigger(){
-        // This method does absolutely nothingg
-    }
-
 
     //The chromedriver and the Selenium Standalone driver have to be in the same folder!
     @BeforeEach
