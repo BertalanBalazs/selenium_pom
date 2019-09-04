@@ -25,11 +25,11 @@
                 <configuration>
                     <systemPropertyVariables>
                         <!--suppress UnresolvedMavenProperty -->
-                        <username>"user1"</username>
+                        <username>user1</username>
                         <!--suppress UnresolvedMavenProperty -->
-                        <password>"CoolCanvas19."</password>
+                        <password>CoolCanvas19.</password>
                         <!--suppress UnresolvedMavenProperty -->
-                        <baseUrl>"https://jira.codecool.codecanvas.hu/"</baseUrl>
+                        <baseUrl>https://jira.codecool.codecanvas.hu/</baseUrl>
                         [...]
                     </systemPropertyVariables>
                 </configuration>
